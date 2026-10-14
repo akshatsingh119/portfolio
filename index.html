@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akshat Singh | Product Manager</title>
+<meta name="description" content="Product manager and analyst at Paytm. I build features for the Mas Movil super app and use data to decide what to ship.">
+<meta property="og:title" content="Akshat Singh | Product Manager">
+<meta property="og:description" content="Product manager and analyst at Paytm. Mas Movil super app, analytics, and shipping.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF2F7; --ink:#101B33; --muted:#52607A; --line:#C9D3E2;
+  --accent:#2B45F5; --mark:#FFD84A; --card:#F8FAFC;--grid:rgba(43,69,245,.09);--o1:#6F82FF;--o2:#3DD9E8;--o3:#FFD84A;--oa:.45;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#0E1424;--ink:#E8EDF7;--muted:#9AA7C2;--line:#27314D;--accent:#8FA0FF;--mark:#FFD84A;--card:#151D33;--grid:rgba(143,160,255,.09);--o1:#4458F0;--o2:#14B8C8;--o3:#B89A1C;--oa:.32}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;font-family:var(--display);font-weight:700}
+header.top nav{display:flex;gap:1.5rem;font-weight:500;font-size:1rem}
+header.top a{color:var(--ink);text-decoration:none}
+header.top a:hover{color:var(--accent)}
+
+.hero{padding:4rem 0 5rem}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,8vw,6rem);line-height:.98;letter-spacing:-.035em;margin:0 0 2rem;max-width:14ch}
+.hero h1 span{background:linear-gradient(transparent 62%,var(--mark) 62% 92%,transparent 92%);color:var(--ink)}
+.hero p{max-width:36rem;font-size:1.25rem;color:var(--muted);margin:0 0 2rem}
+.hero p strong{color:var(--ink);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.8rem 1.3rem;border-radius:999px;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.btn.fill{background:var(--ink);color:var(--paper)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+
+
+body{position:relative;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 10%,transparent 75%)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:var(--oa);will-change:transform}
+.o1{width:38rem;height:38rem;background:var(--o1);top:-14rem;right:-10rem;animation:drift1 26s ease-in-out infinite alternate}
+.o2{width:30rem;height:30rem;background:var(--o2);top:30vh;left:-12rem;animation:drift2 32s ease-in-out infinite alternate}
+.o3{width:18rem;height:18rem;background:var(--o3);bottom:-6rem;right:12%;opacity:calc(var(--oa) * .6);animation:drift1 38s ease-in-out infinite alternate-reverse}
+@keyframes drift1{to{transform:translate3d(-8rem,6rem,0) scale(1.15)}}
+@keyframes drift2{to{transform:translate3d(10rem,-5rem,0) scale(1.2)}}
+.wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin:0 0 2rem;line-height:1.1}
+
+.case{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:1rem 3rem;padding:2rem 0;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case h3{font-family:var(--display);font-size:1.5rem;line-height:1.15;margin:0 0 .4rem;letter-spacing:-.01em}
+.case .tag{color:var(--muted);font-size:.95rem;margin:0}
+.case dl{margin:0;display:grid;grid-template-columns:7rem minmax(0,1fr);gap:.9rem 1.25rem}
+.case dt{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--accent)}
+.case dd{margin:0;max-width:60ch}
+.todo{background:var(--mark);color:#101B33;padding:0 .35em;border-radius:3px;font-size:.95em}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem 2.5rem}
+.skills h3{font-family:var(--display);font-size:1.1rem;margin:0 0 .4rem}
+.skills p{margin:0;color:var(--muted)}
+
+.about{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:1rem 3rem}
+.about p{margin:0 0 1rem;max-width:60ch}
+
+.contact a.big{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.5vw,2.8rem);letter-spacing:-.02em;word-break:break-all}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--line)}
+
+@media (max-width:720px){
+  .case,.about{grid-template-columns:1fr}
+  .case dl{grid-template-columns:1fr;gap:.2rem}
+  .case dd{margin-bottom:.8rem}
+  header.top nav{gap:1rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="wrap">
+  <header class="top">
+    <span>Akshat Singh</span>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>I decide what the app <span>ships next.</span></h1>
+      <p>I'm a product manager at Paytm. I look after parts of the <strong>Mas Movil super app</strong>, a 1.2M-user mobile app, read the data to see what's working, and work with engineering to ship the fix or the feature.</p>
+      <div class="btns">
+        <a class="btn fill" href="#work">See my work</a>
+        <a class="btn" href="mailto:akshat.c119@gmail.com">Email me</a>
+        <a class="btn" href="resume.pdf">Resume (PDF)</a>
+      </div>
+    </div>
+
+    <section id="work">
+      <h2>Selected work</h2>
+
+      <article class="case">
+        <div>
+          <h3>Media Lounge</h3>
+          <p class="tag">Mas Movil super app · content streaming and channel viewing</p>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Users had no way to view content in the app, and engagement was low.</dd>
+          <dt>My role</dt><dd>Owned it end to end: requirements, working with engineering and back-office teams, launch, and follow-up.</dd>
+          <dt>Decisions</dt><dd>I built the feature from scratch and introduced subscriptions for different user segments, so each group got a plan that fit it.</dd>
+          <dt>Outcome</dt><dd>I set up analytics for the feature on the 1.2M-user super app. In its first month it drove 36,000+ paying users, which puts it on pace for about $400,000 a year.</dd>
+        </dl>
+      </article>
+
+      <article class="case">
+        <div>
+          <h3>Offer Basket</h3>
+          <p class="tag">Mas Movil super app · offers, separate from Packs and Recharges</p>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>There was no way to give specific users specialized offers.</dd>
+          <dt>My role</dt><dd>Owned it end to end, from scoping to release.</dd>
+          <dt>What I built</dt><dd>A place for prepaid users to get free and discounted offers, along with a welcome offer for new users.</dd>
+          <dt>Outcome</dt><dd>One campaign to a base of 200,000 users drove 38,000 redemptions, about 19% of the base.</dd>
+        </dl>
+      </article>
+
+      <article class="case">
+        <div>
+          <h3>Magazine tracker</h3>
+          <p class="tag">Value Research · internal app</p>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Tracking was manual. Someone had to open a different Google Sheet for each month to find a magazine.</dd>
+          <dt>My role</dt><dd>I automated it with Apps Script, so one view shows each edition with its tracking ID and courier partner.</dd>
+          <dt>Outcome</dt><dd>It replaced the month-by-month lookups and was used internally. It could also have gone live for external users.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>What I work with</h2>
+      <div class="skills">
+        <div><h3>Product</h3><p>PRDs, prioritisation, roadmaps, launch and iteration. About 50-60 features and enhancements shipped on the Mas Movil super app. I built and own all the logic of the back-office panel where the configurations users see in the app are set.</p></div>
+        <div><h3>Data</h3><p>Product analytics, SQL, log analysis in the ELK stack, and API debugging with engineers.</p></div>
+        <div><h3>Working with teams</h3><p>Engineering, back-office, design, and ops. I write things down so people don't have to ask twice.</p></div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About</h2>
+      <div>
+        <p>I'm based in Noida. I studied a dual integrated degree at JNU, a B.Tech in Computer Science and an M.S. in International Relations, so I'm as comfortable reading a stack trace as a policy brief.</p>
+        <p>I like products where a small decision reaches a lot of people, and where I can check afterwards whether I was right.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Say hello</h2>
+      <p><a class="big" href="mailto:akshat.c119@gmail.com">akshat.c119@gmail.com</a></p>
+      <p><a href="https://linkedin.com/in/akshat-singh-86b3a1250" rel="noopener">LinkedIn</a></p>
+    </section>
+  </main>
+
+  <footer>© 2026 Akshat Singh</footer>
+</div>
+</body>
+</html>
