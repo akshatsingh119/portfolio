@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reward Receipt: making cashback honest | Akshat Singh</title>
+<meta name="description" content="Independent product case study: why cashback and scratch-card rewards in Indian UPI apps feel like bait, and a Reward Receipt flow that shows the real reward before you pay.">
+<meta property="og:title" content="Reward Receipt: making cashback honest | Akshat Singh">
+<meta property="og:description" content="Independent case study on rewards clarity in UPI apps: research, root causes, a designed flow and proposed metrics.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://akshatsingh119.github.io/portfolio/assets/img/rewards-clarity/cover-1600.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="wrap">
+  <header class="top">
+    <a href="../../">Akshat Singh</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="cs">
+    <a class="cs-back" href="../../#work">← Back to work</a>
+
+    <div class="cs-hero">
+      <p class="cs-eyebrow">Case study · Fintech rewards · Independent concept</p>
+      <h1>Reward Receipt: making cashback <span>honest.</span></h1>
+      <p class="cs-lede">UPI apps spend real money on cashback, yet users call it bait. I dug into why, and designed a flow that tells people what they'll really get <em>before</em> they pay, then gives every reward a receipt, a status and a rupee value.</p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product Analyst (solo)</dd></div>
+        <div><dt>Scope</dt><dd>Research → metrics → UI</dd></div>
+        <div><dt>Deliverable</dt><dd>Problem framing, 11 screens, metric plan</dd></div>
+        <div><dt>Date</dt><dd>Oct 2026</dd></div>
+      </dl>
+      <p class="cs-note"><strong>Independent concept, not Paytm work.</strong> I built this on my own using only public information: help pages, published T&amp;Cs, NPCI/PIB data, news reports and public user posts. No internal or confidential data from Paytm or any other company. “Lumo Pay” is a fictional brand, and every amount, name and odds figure inside the screens is illustrative.</p>
+      <figure class="cs-fig cs-cover">
+        <img src="../../assets/img/rewards-clarity/cover-1600.webp" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Reward Receipt concept: a checkout offer card saying 'You're eligible, ₹10–₹50 cashback, most people get ₹20', a payment success screen with a reward receipt showing ₹25 credited and 'Matches what we showed you', and a rewards wallet in rupees.">
+      </figure>
+    </div>
+
+    <section id="tldr" aria-labelledby="tldr-h">
+      <span class="cs-num">TL;DR</span>
+      <h2 id="tldr-h">The short version</h2>
+      <div class="cs-tldr">
+        <ul>
+          <li><strong>Problem:</strong> users decide to pay based on a reward promise, then find out afterwards that they weren't eligible, that “up to ₹300” meant ₹0–₹2, or that the reward is coins with no clear rupee value.</li>
+          <li><strong>Insight:</strong> the size of the reward isn't what breaks trust. <span class="hl">The gap between what was promised and what was paid</span> is.</li>
+          <li><strong>Solution:</strong> a <strong>Reward Receipt</strong> that follows each reward from promise → payment → status → wallet, with an honest eligibility check before paying and a dispute button that already has the evidence attached.</li>
+          <li><strong>How I'd measure it:</strong> a proposed north star, <strong>Trusted Reward Rate</strong>, plus guardrails so nobody “fixes” trust by simply paying out more.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="context" aria-labelledby="context-h">
+      <span class="cs-num">01 · Context</span>
+      <h2 id="context-h">Rewards are a big, growing line item</h2>
+      <p>UPI has zero MDR on bank-account payments, so apps can't fund rewards from transaction fees. Cashback is a marketing cost, and it clearly moves usage, which is why spend keeps rising.</p>
+      <div class="cs-stats">
+        <div class="cs-stat"><b>24.07 bn</b><span>UPI transactions in Sep 2026, worth ₹29.37 lakh crore, up 22.6% YoY by volume.</span><p class="cs-src"><a href="https://www.npci.org.in/product/upi/product-statistics/" rel="noopener">NPCI</a> · <a href="https://www.business-standard.com/finance/news/upi-transactions-september-2026-mdr-october-15-npci-126100100510_1.html" rel="noopener">Business Standard</a></p></div>
+        <div class="cs-stat"><b>₹104 cr</b><span>Paytm's reported promotional cashback and incentives in Jan–Mar 2026, up 154% YoY.</span><p class="cs-src"><a href="https://www.livemint.com/industry/fintechs-upi-payments-cashback-finance-credit-commerce-11782036097346.html" rel="noopener">Mint, Jun 2026</a></p></div>
+        <div class="cs-stat"><b>−85%</b><span>POPclub's monthly UPI volume (63.7M → 9.5M) after it phased out cashback.</span><p class="cs-src"><a href="https://www.moneycontrol.com/technology/razorpay-backed-popclub-s-upi-transactions-slump-as-incentive-pullback-hits-hard-article-13772022.html" rel="noopener">Moneycontrol, Jan 2026</a></p></div>
+        <div class="cs-stat"><b>~78%</b><span>of payer-side volume sits with PhonePe (45.57%) and Google Pay (32.23%), both scratch-card apps. Paytm: 8.12%.</span><p class="cs-src"><a href="https://data.indiadispatch.com/data/series/payments/upi-app-market-share.csv" rel="noopener">NPCI app-wise data, Sep 2026</a></p></div>
+      </div>
+      <p>Regulators are paying attention too. The <a href="https://consumeraffairs.nic.in/sites/default/files/The%20Guidelines%20for%20Prevention%20and%20Regulation%20of%20Dark%20Patterns%2C%202023.pdf" rel="noopener">CCPA's 2023 dark-pattern guidelines</a> name false urgency, bait and switch and drip pricing, and in June 2025 the CCPA <a href="https://consumeraffairs.nic.in/latestnews/ccpa-advisory-terms-consumer-protection-act-2019-self-audit-e-commerce-platforms" rel="noopener">asked platforms to self-audit</a>. PhonePe's own <a href="https://www.phonepe.com/terms-conditions/gifts-rewards/" rel="noopener">rewards T&amp;C</a> excludes Tamil Nadu from scratch cards because of the state's prize-scheme law.</p>
+      <p><strong>So the question isn't whether apps will keep paying for rewards. It's whether that spend buys trust and habit, or suspicion.</strong></p>
+    </section>
+
+    <section id="problem" aria-labelledby="problem-h">
+      <span class="cs-num">02 · Problem</span>
+      <h2 id="problem-h">What users actually say</h2>
+      <p>I read public complaints across Reddit, the App Store, blogs and consumer forums. The same five pains kept coming back. Quotes are verbatim.</p>
+      <div class="cs-quotes">
+        <figure class="cs-quote">
+          <p>If I wasn't one of those selected users, why was the offer shown to me at all?</p>
+          <figcaption><span class="cs-pain">Eligibility revealed after paying</span><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1usjtlp/phonepe_showed_me_a_200_cashback_offer_i/" rel="noopener">PhonePe user, r/CreditCardsIndia, Jul 2026</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>There are no terms and conditions show on the payment page. All I can see is just the offer.</p>
+          <figcaption><span class="cs-pain">Rules live on another screen</span><a href="https://www.reddit.com/r/UPI/comments/1risucz/paytm_bluffing_technique/" rel="noopener">Paytm offer via Swiggy, r/UPI, Mar 2026</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>The app mentioned upto₹ 300 cashback, I won't even single rupee.</p>
+          <figcaption><span class="cs-pain">“Up to ₹X” pays ₹0</span><a href="https://www.reddit.com/r/UPI/comments/1sb4x93/paytm_cashback_not_received/" rel="noopener">Paytm Jio recharge, r/UPI, Apr 2026</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>Got ₹1 CB on Rupay CC transaction value of ₹63,500</p>
+          <figcaption><span class="cs-pain">Tiny payout, big expectation</span><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1qz8dmz/uninstalling_cred_app/" rel="noopener">CRED user, r/CreditCardsIndia, Feb 2026</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>Better luck next time, jua khel rahe ho</p>
+          <figcaption><span class="cs-pain">Lottery feel (“you're gambling”)</span><a href="https://www.reddit.com/r/india/comments/dncasx/my_cousin_received_this_from_the_gpay_scratch/" rel="noopener">Google Pay thread, r/india, 2019</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>A simple message saying that we did not win any scratch cards is way better than giving us a scratch card every time…</p>
+          <figcaption><span class="cs-pain">Empty scratch cards</span><a href="https://www.reddit.com/r/india/comments/fft0sp/google_pay_the_subtle_of_art_of_not_giving_a_luck/" rel="noopener">Google Pay user, r/india, 2020</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>another 500rs off on lenskart coupon i will never use. At least Amazon gives 5-10 rs direct to the pay balance.</p>
+          <figcaption><span class="cs-pain">Vouchers and coins with no clear value</span><a href="https://www.reddit.com/r/india/comments/dncasx/my_cousin_received_this_from_the_gpay_scratch/" rel="noopener">r/india comment, Aug 2026</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>1L coins = 1 mcd burger? /s</p>
+          <figcaption><span class="cs-pain">Invented currencies</span><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1hb6zh6/why_aint_anybody_talking_about_this/" rel="noopener">CRED Coins thread, r/CreditCardsIndia, Dec 2024</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>It's been more than 2 months, but I haven't received even ₹1 cashback</p>
+          <figcaption><span class="cs-pain">No status trail</span><a href="https://www.reddit.com/r/FuckFlipkart/comments/1ulmg7c/flipkart_paytm_cashback_not_received_even_after_2/" rel="noopener">Flipkart + Paytm offer, r/FuckFlipkart, Jul 2026</a></figcaption>
+        </figure>
+      </div>
+      <p>The PhonePe user above spoke to “4–5 different support agents, and almost every one has given me a different explanation”, and was then asked for a screen recording as proof. Support had no record of what the user had been shown.</p>
+      <p><strong>Fairness check.</strong> In the same threads, some users push back: “Whatever you got is still ₹1 more than what you'd have gotten… via the bank's portal” (<a href="https://www.reddit.com/r/CreditCardsIndia/comments/1qz8dmz/uninstalling_cred_app/" rel="noopener">r/CreditCardsIndia</a>). That's a useful signal. People don't really expect big rewards. They object to being <em>promised</em> big ones.</p>
+      <h3>Problem statement</h3>
+      <p>A user paying with a reward in mind can't tell, before paying, whether they qualify, roughly what they'll get, in what form, or when it expires. After paying, they can't see where the reward is. So the spend doesn't turn into trust or repeat use, support costs go up, and the payment brand takes the blame.</p>
+      <p><strong>How might we</strong> make every reward predictable before payment, traceable after payment, and worth something in rupees, without cutting the engagement rewards are meant to drive?</p>
+    </section>
+
+    <section id="insights" aria-labelledby="insights-h">
+      <span class="cs-num">03 · Insights</span>
+      <h2 id="insights-h">What I took away</h2>
+      <ol class="cs-insights">
+        <li><div><strong>Promise vs payout beats payout size.</strong> Users accept ₹2 when ₹2 was promised. They're angry about ₹0 when “up to ₹300” was shown.</div></li>
+        <li><div><strong>Eligibility arrives at the wrong time.</strong> Every “not eligible” complaint I found was discovered after the user had already paid.</div></li>
+        <li><div><strong>Variable rewards disappoint as well as delight.</strong> “Better luck next time” is remembered as a loss. The scratch gesture builds an expectation the payout can't meet.</div></li>
+        <li><div><strong>Invented currencies hide value.</strong> Coins, points and vouchers with no ₹ value, minimum thresholds and short expiries read as “worthless”. Direct balance (Amazon Pay) gets praised.</div></li>
+        <li><div><strong>No trail, no trust.</strong> Without a visible status, every delay looks like fraud and every support ticket starts from zero.</div></li>
+        <li><div><strong>The brand pays the price.</strong> Users say they'll switch apps over reward disputes. For a payments app that risks core payment volume, not just promo engagement. <span class="cs-tag">Hypothesis</span></div></li>
+      </ol>
+    </section>
+
+    <section id="root-causes" aria-labelledby="root-h">
+      <span class="cs-num">04 · Root causes</span>
+      <h2 id="root-h">Why it keeps happening</h2>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Symptom</th><th scope="col">Root cause</th><th scope="col">Type</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Shown an offer, not eligible</th><td data-label="Root cause">Targeting (who sees the offer) is separate from eligibility (checked after payment). T&amp;Cs sit on another screen. Hidden “activate” step.</td><td data-label="Type">Product / data</td></tr>
+            <tr><th scope="row">“Up to ₹X” anger</th><td data-label="Root cause">Copy anchors on the maximum. The spread of outcomes isn't disclosed.</td><td data-label="Type">Content / incentives</td></tr>
+            <tr><th scope="row">“Better luck next time”</th><td data-label="Root cause">Variable rewards built for engagement, with zero-value outcomes allowed.</td><td data-label="Type">Incentive design</td></tr>
+            <tr><th scope="row">Coins feel worthless</th><td data-label="Root cause">Several currencies, no ₹ equivalent, minimum redemption, short expiry.</td><td data-label="Type">Product / economics</td></tr>
+            <tr><th scope="row">“Never received”</th><td data-label="Root cause">Async payout pipelines, no user-facing status, and support can't see what the user was shown.</td><td data-label="Type">Systems / ops</td></tr>
+            <tr><th scope="row">Silent expiry</th><td data-label="Root cause">Expiry windows differ by reward type and aren't summarised anywhere.</td><td data-label="Type">Product</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="teardown" aria-labelledby="teardown-h">
+      <span class="cs-num">05 · Competitor teardown</span>
+      <h2 id="teardown-h">How the big apps do it today</h2>
+      <p>From public help pages and T&amp;Cs, read on 21 Oct 2026. Rules change often.</p>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead><tr><th scope="col">App</th><th scope="col">Mechanic</th><th scope="col">What you get</th><th scope="col">Certainty</th><th scope="col">Expiry</th><th scope="col">Status after paying</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><a href="https://support.google.com/pay/india/answer/7539588?hl=en" rel="noopener">Google Pay</a></th><td data-label="Mechanic">Random scratch cards, collect-the-set games</td><td data-label="What you get">₹ to bank</td><td data-label="Certainty">“Better luck next time” possible</td><td data-label="Expiry">Varies (7 and 45-day cases)</td><td data-label="Status">“Processing”, “Action required”</td></tr>
+            <tr><th scope="row"><a href="https://www.phonepe.com/terms-conditions/gifts-rewards/" rel="noopener">PhonePe</a></th><td data-label="Mechanic">Scratch cards; offers for “select users”</td><td data-label="What you get">Gift voucher (not withdrawable)</td><td data-label="Certainty">“Not guaranteed in any manner whatsoever”</td><td data-label="Expiry">Unscratched cards 30 days; vouchers 1 year</td><td data-label="Status">Ticket → grievance → nodal → RBI</td></tr>
+            <tr><th scope="row"><a href="https://paytm.com/blog/paytm-gold-coins/what-is-paytm-gold-coin-program/" rel="noopener">Paytm</a></th><td data-label="Mechanic">Scratch card → Gold Coins; checkout offers</td><td data-label="What you get">100 coins = ₹1 of digital gold</td><td data-label="Certainty">Variable; minimum 1 coin (₹0.01)</td><td data-label="Expiry">Cards 3 days; coins 6 months; 500-coin minimum</td><td data-label="Status">Coins “can take up to 24 hours”</td></tr>
+            <tr><th scope="row"><a href="https://www.airtel.in/blog/credit-card/what-are-cred-coins-how-to-use-them-complete-guide/" rel="noopener">CRED</a></th><td data-label="Mechanic">Coins spent on jackpots, vouchers, store</td><td data-label="What you get">Coins (no fixed ₹ value)</td><td data-label="Certainty">Chance-based jackpots</td><td data-label="Expiry">Varies</td><td data-label="Status">—</td></tr>
+            <tr><th scope="row"><a href="https://www.amazon.in/gp/help/customer/display.html?nodeId=202169540" rel="noopener">Amazon Pay</a></th><td data-label="Mechanic">Scratch cards in Rewards</td><td data-label="What you get">₹ in Amazon Pay balance</td><td data-label="Certainty">Offer-specific</td><td data-label="Expiry">Offer-specific</td><td data-label="Status">Credited “generally within 24 hours”</td></tr>
+            <tr><th scope="row"><a href="https://www.bsesdelhi.com/web/brpl/npci-bhim-upi" rel="noopener">BHIM</a></th><td data-label="Mechanic">Biller / merchant campaigns</td><td data-label="What you get">₹ cashback</td><td data-label="Certainty">“Up to ₹X”</td><td data-label="Expiry">Campaign end dates</td><td data-label="Status">Users report “2–3 working days” promise missed</td></tr>
+            <tr><th scope="row"><a href="https://www.moneycontrol.com/technology/flipkart-s-super-money-hits-a-upi-plateau-here-s-what-it-s-trying-next-article-13768053.html" rel="noopener">super.money</a></th><td data-label="Mechanic">Cashback on merchant UPI, now RuPay credit</td><td data-label="What you get">₹ cashback</td><td data-label="Certainty">Every merchant payment earns</td><td data-label="Expiry">—</td><td data-label="Status">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-src">— means I couldn't find it on public pages.</p>
+      <ul>
+        <li><strong>Every major app runs 2–3 reward “currencies”</strong>, each with its own expiry, and users have to track them all. Windows range from 3 days to 1 year.</li>
+        <li><strong>Eligibility lives on a different screen from the offer.</strong> Google Pay has the clearest status states. Elsewhere, users fall back on tickets and screenshots.</li>
+        <li><strong>Small but certain wins sentiment.</strong> Amazon Pay's direct balance and super.money's “every payment earns” stance are what users praise.</li>
+      </ul>
+    </section>
+
+    <section id="solution" aria-labelledby="solution-h">
+      <span class="cs-num">06 · Options &amp; decision</span>
+      <h2 id="solution-h">Three ways to fix it, and the one I'd ship</h2>
+      <div class="cs-options">
+        <div class="cs-option">
+          <h3>A · Honest Offer layer</h3>
+          <p>Show an eligibility verdict and a realistic ₹ range on the payment screen, instead of “up to ₹X”.</p>
+          <p><b>For:</b> fixes the worst trust gap; small UI change; strong regulatory story.</p>
+          <p><b>Against:</b> needs a real-time eligibility check; may lower banner click-through; doesn't fix coins or tracking.</p>
+        </div>
+        <div class="cs-option">
+          <h3>B · One Reward Wallet</h3>
+          <p>Cashback, vouchers, coins and cards in one place, each with a ₹ value, expiry and where it works.</p>
+          <p><b>For:</b> fixes invented currencies and silent expiry; good for habit.</p>
+          <p><b>Against:</b> doesn't fix the surprise at payment; a ₹ value may expose how little coins are worth.</p>
+        </div>
+        <div class="cs-option">
+          <h3>C · Guaranteed + Bonus</h3>
+          <p>A small, certain reward shown up front, with any bonus disclosed as a bonus. No empty scratch cards.</p>
+          <p><b>For:</b> kills “better luck next time”; lower regulatory risk.</p>
+          <p><b>Against:</b> may cut the engagement spike; a business-model change that's harder to sell internally.</p>
+        </div>
+      </div>
+      <div class="cs-decision">
+        <h3>My call: Reward Receipt = A + B, with C's rule on zero outcomes</h3>
+        <ol>
+          <li><strong>Before payment:</strong> an honest offer card with verdict, expected range, reward form and timing.</li>
+          <li><strong>After payment:</strong> a receipt that says what you got and why, plus a status. If it's zero, say so.</li>
+          <li><strong>Wallet:</strong> every reward in rupees, with expiry and a “use it” action.</li>
+          <li><strong>Disputes:</strong> “Something's wrong?” sends the saved offer snapshot to support. No screen recordings.</li>
+        </ol>
+        <p style="margin:0">It closes the biggest trust gap without asking the business to drop variable rewards on day one, and it creates the data needed to measure trust. Option C then runs as an A/B test inside the same framework.</p>
+      </div>
+    </section>
+
+    <section id="flow" aria-labelledby="flow-h">
+      <span class="cs-num">07 · The design</span>
+      <h2 id="flow-h">The Reward Receipt flow</h2>
+      <p>One ₹10–₹50 offer, followed from the payment screen to the wallet. I designed 11 screens (33 states) at 390×844 with a small design system: verdict badges, status pills, ₹-value and expiry chips.</p>
+      <figure class="cs-fig cs-flow">
+        <img src="../../assets/img/rewards-clarity/flow-1920.webp" srcset="../../assets/img/rewards-clarity/flow-960.webp 960w, ../../assets/img/rewards-clarity/flow-1920.webp 1920w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview in four steps. Step 1, before paying: an offer card shows eligibility and a ₹10–₹50 range. Step 2, right after paying: a reward receipt shows ₹25 credited and that it matched the promise. Step 3, while it's on the way: a status timeline from promised to credited with a saved offer snapshot. Step 4, any time after: a wallet that values cashback, vouchers and coins in rupees.">
+        <figcaption>Promise → receipt → status → wallet. The same offer snapshot travels through every step.</figcaption>
+      </figure>
+
+      <h3>Before / after: the same checkout, eligible vs not</h3>
+      <p>Today, users find out they weren't eligible after they pay. Here, the verdict and the reason show up on the payment screen, with an alternative offer.</p>
+      <div class="cs-pair">
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a green 'You're eligible' badge, ₹10–₹50 cashback, 'Most people get ₹20 on this amount', paid to bank within 24 hours, minimum payment ₹200.">
+          <figcaption><small>Eligible</small><b>A range and a typical amount</b>Not “up to”. Form, timing and the one key condition, right where you pay.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a 'Not eligible' badge: 'No cashback on this payment. The ₹10–₹50 offer is for people who haven't paid in 60+ days. Your last payment was 3 days ago', with a suggested alternative offer.">
+          <figcaption><small>Not eligible</small><b>Told before paying, with the reason</b>The 60-day rule users complained about, said plainly, plus something they can use instead.</figcaption>
+        </figure>
+      </div>
+
+      <h3>Screen highlights</h3>
+      <div class="cs-screens">
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s03-success-reward-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Payment success screen for ₹649 with a Reward Receipt card: ₹25 cashback credited to the bank, and a green note 'Matches what we showed you. We said ₹10–₹50, most people get ₹20.'">
+          <figcaption><small>S03 · Payment success</small><b>A receipt, not a scratch card</b>What you got, where it went, and proof it matched the promise.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s04-status-on-track.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Reward status screen marked 'On track': a timeline of promised, paid, reward issued, processing and credited, an expected date, and a time-stamped snapshot of the offer shown before payment.">
+          <figcaption><small>S04 · Status tracker</small><b>“Where's my cashback?” answered</b>A timeline with an ETA and the offer snapshot, so no one needs support to check.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s05-wallet-populated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Rewards wallet showing a total in rupees split into cashback, vouchers and coins, an 'Expiring soon' rail with days-left chips, and coins shown with their rupee value and progress to the redemption minimum.">
+          <figcaption><small>S05 · Rewards wallet</small><b>Everything in rupees</b>Coins shown with their ₹ value and redemption threshold. Expiring items come first.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s02-offer-sheet-activated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Offer detail bottom sheet marked 'Activated, you're eligible', with an English/Hindi toggle: who it's for, ₹10–₹50 cashback with a small chart showing ₹20 as most common, three steps to get it, arrival within 24 hours, end date and limits.">
+          <figcaption><small>S02 · Offer details</small><b>T&amp;Cs in plain language</b>Who it's for, the spread of likely amounts, and when it arrives. Activation is a visible step, in English or Hindi.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s09-dispute-draft.webp" width="780" height="1688" loading="lazy" decoding="async" alt="'Something's wrong?' dispute screen with the offer shown and the payment already attached, marked 'No screenshots needed', a reason picker and a 48-hour reply time.">
+          <figcaption><small>S09 · Dispute</small><b>Evidence already attached</b>The offer snapshot and payment go with the report, instead of a screen recording.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Concept test screen 'Guaranteed + Bonus': a reward receipt splitting a guaranteed amount shown before payment from a separately labelled bonus with disclosed odds.">
+          <figcaption><small>S11 · Concept test</small><b>Guaranteed + bonus</b>Option C as an A/B variant: a certain amount, with any bonus and its odds disclosed up front.</figcaption>
+        </figure>
+      </div>
+
+      <h3>Honest copy patterns</h3>
+      <p>The copy matters as much as the screens, so I wrote a small pattern library of do/don't pairs for banners, expiry reminders, payment success and coins.</p>
+      <figure class="cs-fig">
+        <img src="../../assets/img/rewards-clarity/s10-copy-patterns-1440.webp" srcset="../../assets/img/rewards-clarity/s10-copy-patterns-1440.webp 1440w, ../../assets/img/rewards-clarity/s10-copy-patterns-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1440" height="1142" loading="lazy" decoding="async" alt="Honest copy patterns board with don't and do pairs. Home banner: 'Up to ₹300 cashback' becomes '₹20–₹300 cashback, most people get ₹30'. Expiry reminder: 'HURRY!! expires TONIGHT' becomes a voucher value, date and condition. After payment: an empty 'Better luck next time' scratch card becomes 'No reward on this payment, as shown before you paid'. Coins: 'You won 50 coins!' becomes '50 coins added (= ₹5)'.">
+        <figcaption>Five rules: say it in ₹, typical not “up to”, eligibility before paying, no fake urgency, and zero is a valid answer. <a href="../../assets/img/rewards-clarity/s10-copy-patterns-2880.webp">Open full size</a></figcaption>
+      </figure>
+    </section>
+
+    <section id="metrics" aria-labelledby="metrics-h">
+      <span class="cs-num">08 · Success metrics</span>
+      <h2 id="metrics-h">How I'd measure it</h2>
+      <p class="cs-note"><strong>These are proposed definitions, not results.</strong> Nothing here has been built or tested. A real baseline and targets would need internal data, which this case study deliberately doesn't use.</p>
+      <div class="cs-north">
+        <p class="cs-eyebrow">North star</p>
+        <h3>Trusted Reward Rate (TRR)</h3>
+        <p>% of rewarded transactions where the reward matched what was shown before payment (same eligibility outcome, within the shown range) <strong>and</strong> no dispute or ticket was raised within 14 days.</p>
+      </div>
+      <div class="cs-cols">
+        <div>
+          <h3>Drivers</h3>
+          <ul>
+            <li><strong>Pre-payment clarity coverage:</strong> % of offer impressions showing a verdict and ₹ range on the payment screen.</li>
+            <li><strong>Reward claim rate:</strong> claimed ÷ issued rewards.</li>
+            <li><strong>Expiry leakage:</strong> ₹ value expired unclaimed ÷ ₹ value issued.</li>
+            <li><strong>Realised value per user per month</strong> in ₹, actually credited and usable.</li>
+            <li><strong>Repeat rewarded-payment rate (D30).</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Guardrails</h3>
+          <ul>
+            <li><strong>Promo cost per incremental transaction</strong> can't rise past an agreed threshold. No fixing trust by paying more.</li>
+            <li><strong>Reward tickets per 10k rewarded txns</strong> should fall, not just move channels.</li>
+            <li><strong>Payment conversion and success-screen latency:</strong> clarity must not slow paying.</li>
+            <li><strong>Nudge opt-out / mute rate:</strong> no nagging.</li>
+            <li><strong>Fraud and abuse rate:</strong> clearer rules mustn't make gaming easier.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks" aria-labelledby="risks-h">
+      <span class="cs-num">09 · Risks &amp; next steps</span>
+      <h2 id="risks-h">What could go wrong, and what I'd test next</h2>
+      <div class="cs-cols">
+        <div>
+          <h3>Risks</h3>
+          <ul>
+            <li><strong>Real-time eligibility cost.</strong> The check has to be fast and must never block paying.</li>
+            <li><strong>Brand partners</strong> may not want realistic ranges shown instead of “up to”.</li>
+            <li><strong>₹ values for coins</strong> could lower engagement once people see what they're worth.</li>
+            <li><strong>Legal review</strong> of all reward copy. My reading of the CCPA guidelines isn't legal advice.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I'd test next</h3>
+          <ul>
+            <li>8–10 interviews across three hypothesised personas (deal-checker, bill-payer, everyday QR scanner), a card sort on reward types, and a first-click test of the checkout card.</li>
+            <li>A/B: “up to ₹X” vs range vs typical value, measuring click-through <em>and</em> later dispute rate.</li>
+            <li>A one-week diary study of reward expiry and claims.</li>
+            <li>Fill my research gap: a systematic sample of Google Play reviews and X posts.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="cs-src">Caveat: Reddit and review quotes are self-selected and lean negative. They show what kinds of pain exist, not how common each one is.</p>
+    </section>
+
+    <section id="sources" class="cs-sources" aria-labelledby="sources-h">
+      <span class="cs-num">10 · Sources</span>
+      <h2 id="sources-h">Sources</h2>
+      <h3>Data, regulation and help pages</h3>
+      <ol>
+        <li><a href="https://www.npci.org.in/product/upi/product-statistics/" rel="noopener">NPCI: UPI product statistics</a></li>
+        <li><a href="https://www.business-standard.com/finance/news/upi-transactions-september-2026-mdr-october-15-npci-126100100510_1.html" rel="noopener">Business Standard: UPI volumes at 24.07 bn in September (Oct 2026)</a></li>
+        <li><a href="https://data.indiadispatch.com/data/series/payments/upi-app-market-share.csv" rel="noopener">India Dispatch dataset of NPCI app-wise market share</a> (underlying: <a href="https://www.npci.org.in/product/ecosystem-statistics/upi" rel="noopener">NPCI ecosystem statistics</a>)</li>
+        <li><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2114335" rel="noopener">PIB: incentive scheme for low-value BHIM-UPI P2M payments (Mar 2025)</a></li>
+        <li><a href="https://www.livemint.com/industry/fintechs-upi-payments-cashback-finance-credit-commerce-11782036097346.html" rel="noopener">Mint: a new crop of UPI players is rewriting the cashback playbook (Jun 2026)</a></li>
+        <li><a href="https://www.moneycontrol.com/technology/razorpay-backed-popclub-s-upi-transactions-slump-as-incentive-pullback-hits-hard-article-13772022.html" rel="noopener">Moneycontrol: POPclub's UPI transactions slump after incentive pullback (Jan 2026)</a></li>
+        <li><a href="https://www.moneycontrol.com/technology/flipkart-s-super-money-hits-a-upi-plateau-here-s-what-it-s-trying-next-article-13768053.html" rel="noopener">Moneycontrol: super.money's UPI market share stays stagnant (Jan 2026)</a></li>
+        <li><a href="https://consumeraffairs.nic.in/sites/default/files/The%20Guidelines%20for%20Prevention%20and%20Regulation%20of%20Dark%20Patterns%2C%202023.pdf" rel="noopener">CCPA: Guidelines for Prevention and Regulation of Dark Patterns, 2023</a></li>
+        <li><a href="https://consumeraffairs.nic.in/latestnews/ccpa-advisory-terms-consumer-protection-act-2019-self-audit-e-commerce-platforms" rel="noopener">CCPA: advisory on self-audit for dark patterns (Jun 2025)</a></li>
+        <li><a href="https://www.phonepe.com/terms-conditions/gifts-rewards/" rel="noopener">PhonePe: terms of use of gift cards / rewards</a></li>
+        <li><a href="https://www.orfonline.org/expert-speak/the-weaponisation-of-cashbacks-on-upi-by-google-pay-57099" rel="noopener">ORF: the weaponisation of cashbacks on UPI by Google Pay (2019)</a></li>
+        <li><a href="https://support.google.com/pay/india/answer/7539588?hl=en" rel="noopener">Google Pay Help: rewards FAQs</a></li>
+        <li><a href="https://paytm.com/blog/paytm-gold-coins/what-is-paytm-gold-coin-program/" rel="noopener">Paytm blog: Gold Coins program (updated Sep 2026)</a></li>
+        <li><a href="https://www.airtel.in/blog/credit-card/what-are-cred-coins-how-to-use-them-complete-guide/" rel="noopener">Airtel blog: what are CRED Coins (third-party explainer)</a></li>
+        <li><a href="https://www.amazon.in/gp/help/customer/display.html?nodeId=202169540" rel="noopener">Amazon Pay: cashback FAQ</a></li>
+        <li><a href="https://www.bsesdelhi.com/web/brpl/npci-bhim-upi" rel="noopener">BSES Rajdhani: NPCI BHIM UPI offer</a></li>
+      </ol>
+      <h3>User voice</h3>
+      <ol>
+        <li><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1usjtlp/phonepe_showed_me_a_200_cashback_offer_i/" rel="noopener">r/CreditCardsIndia: PhonePe ₹200 offer, “never eligible” (Jul 2026)</a></li>
+        <li><a href="https://www.reddit.com/r/UPI/comments/1risucz/paytm_bluffing_technique/" rel="noopener">r/UPI: Paytm offer via Swiggy, 60-day rule (Mar 2026)</a></li>
+        <li><a href="https://www.reddit.com/r/UPI/comments/1sb4x93/paytm_cashback_not_received/" rel="noopener">r/UPI: Paytm cashback not received (Apr 2026)</a></li>
+        <li><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1qz8dmz/uninstalling_cred_app/" rel="noopener">r/CreditCardsIndia: uninstalling CRED (Feb 2026)</a></li>
+        <li><a href="https://www.reddit.com/r/india/comments/fft0sp/google_pay_the_subtle_of_art_of_not_giving_a_luck/" rel="noopener">r/india: Google Pay, “the subtle art of not giving a ‘LUCK’” (2020)</a></li>
+        <li><a href="https://www.reddit.com/r/india/comments/dncasx/my_cousin_received_this_from_the_gpay_scratch/" rel="noopener">r/india: GPay “Better Luck Next Time” (2019; comment Aug 2026)</a></li>
+        <li><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1hb6zh6/why_aint_anybody_talking_about_this/" rel="noopener">r/CreditCardsIndia: CRED coins redemption (Dec 2024)</a></li>
+        <li><a href="https://www.reddit.com/r/FuckFlipkart/comments/1ulmg7c/flipkart_paytm_cashback_not_received_even_after_2/" rel="noopener">r/FuckFlipkart: Flipkart + Paytm cashback not received (Jul 2026)</a></li>
+      </ol>
+    </section>
+
+    <section aria-label="More">
+      <div class="cs-next">
+        <a class="btn fill" href="../../#work">← Back to all work</a>
+        <a class="btn" href="mailto:akshat.c119@gmail.com">Talk to me about it</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Akshat Singh · Independent case study. Not affiliated with Paytm, PhonePe, Google Pay, CRED, Amazon Pay, BHIM or super.money.</footer>
+</div>
+</body>
+</html>
