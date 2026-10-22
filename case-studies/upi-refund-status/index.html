@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refund Clock: where's my money after a failed UPI payment? | Akshat Singh</title>
+<meta name="description" content="Short independent product case study: when a UPI payment is debited but fails, show where the money is, the refund date RBI's rules guarantee, and a one-tap dispute.">
+<meta property="og:title" content="Refund Clock: where's my money after a failed UPI payment? | Akshat Singh">
+<meta property="og:description" content="Independent case study on UPI failed-payment and refund clarity: RBI/NPCI rules, user pain, a 4-screen flow and proposed metrics.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://akshatsingh119.github.io/portfolio/assets/img/upi-refund-status/og-cover-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="wrap">
+  <header class="top">
+    <a href="../../">Akshat Singh</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="cs">
+    <a class="cs-back" href="../../#work">← Back to work</a>
+
+    <div class="cs-hero">
+      <p class="cs-eyebrow">Case study · UPI payments · Independent concept</p>
+      <h1>Refund Clock: where's my <span>money?</span></h1>
+      <p class="cs-lede">A UPI payment fails, but the money has already left the bank. Users can't tell where it is or when it's coming back, even though RBI's rules already set the date. I designed a small flow that shows them.</p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product Analyst (solo)</dd></div>
+        <div><dt>Scope</dt><dd>Research → metrics → UI</dd></div>
+        <div><dt>Deliverable</dt><dd>Problem framing, 4 screens, metric plan</dd></div>
+        <div><dt>Date</dt><dd>Oct 2026</dd></div>
+      </dl>
+      <p class="cs-note"><strong>Independent concept, not Paytm work.</strong> Built only from public information: RBI and NPCI circulars, published data, news and public user posts. “Lumo Pay” and “Sharma Medicos” are fictional, and every amount, time and reference number in the screens is illustrative.</p>
+      <figure class="cs-fig cs-cover">
+        <img src="../../assets/img/upi-refund-status/cover-1600.webp" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Refund Clock concept: a pending payment showing where the money is, a refund status screen counting down to 'Back in your bank by Mon, 26 Oct', and a confirmation saying '₹1,240 is back'.">
+      </figure>
+    </div>
+
+    <section id="tldr" aria-labelledby="tldr-h">
+      <span class="cs-num">TL;DR</span>
+      <h2 id="tldr-h">The short version</h2>
+      <div class="cs-tldr">
+        <ul>
+          <li><strong>Problem:</strong> a payment is debited but not completed. The app shows a red “Failed” or a spinner, so the user retries, calls support or panics.</li>
+          <li><strong>Insight:</strong> <span class="hl">the deadline already exists, users just never see it.</span> RBI says the money must be back by T+1 (person to person) or T+5 (shops). After that the bank owes ₹100 a day, paid automatically.</li>
+          <li><strong>Solution:</strong> <strong>Refund Clock</strong>, made of four screens: where your money is now, a countdown to the deadline, a one-tap pre-filled dispute, and a clear “it's back”.</li>
+          <li><strong>How I'd measure it:</strong> a proposed north star, <strong>Calm Resolution Rate</strong>, plus guardrails for double payments, escalations and wrong statuses.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="context" aria-labelledby="context-h">
+      <span class="cs-num">01 · Context</span>
+      <h2 id="context-h">The rules are clear. The screens aren't.</h2>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead><tr><th scope="col">UPI case</th><th scope="col">Money must be back by</th><th scope="col">If late</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Person to person</th><td data-label="Deadline">T+1 (beneficiary bank reverses)</td><td data-label="If late">₹100 per day, automatically</td></tr>
+            <tr><th scope="row">Payment to a shop</th><td data-label="Deadline">T+5 (auto-reversal)</td><td data-label="If late">₹100 per day, automatically</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-src">T is the transaction date and is counted in calendar days. Compensation is paid “suo moto, without waiting for a complaint”. Source: <a href="https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=11693&amp;Mode=0&amp;fn=9" rel="noopener">RBI TAT circular, 20 Sep 2019</a>.</p>
+      <div class="cs-stats">
+        <div class="cs-stat"><b>0.90%</b><span>SBI's UPI technical-decline rate in March 2025, on about 4.95 bn transactions. Several other large banks were at 0.02–0.13%.</span><p class="cs-src"><a href="https://www.thehindubusinessline.com/money-and-banking/sbi-faces-more-upi-transaction-declines-among-large-banks-axis-bank-the-least/article69461352.ece" rel="noopener">BusinessLine, Apr 2025</a></p></div>
+        <div class="cs-stat"><b>~50%</b><span>UPI success rate for two hours during the 12 Apr 2025 outage, which NPCI traced to banks flooding the status-check API.</span><p class="cs-src"><a href="https://economictimes.indiatimes.com/tech/technology/npci-attributes-upi-outage-to-excessive-api-calls-plans-preventive-measures/articleshow/120316821.cms" rel="noopener">Economic Times, Apr 2025</a></p></div>
+        <div class="cs-stat"><b>49,951</b><span>“Mobile / electronic banking” complaints to the RBI Ombudsman in FY25, the third-largest category (not only UPI).</span><p class="cs-src"><a href="https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23441" rel="noopener">RBI Ombudsman report 2024-25</a></p></div>
+      </div>
+      <p>Since 2025, the app also can't just keep refreshing. <a href="https://www.teamleaseregtech.com/updates/article/42023/npci-issued-a-circular-regarding-the-initial-streamlining-of-the-check" rel="noopener">NPCI's OC 215</a> allows the first status check only after 90 seconds, and at most three checks in about two hours. <strong>“Pending” has to be designed as a state the user can live in for minutes, and “refunding” as one they can live in for days.</strong></p>
+    </section>
+
+    <section id="problem" aria-labelledby="problem-h">
+      <span class="cs-num">02 · Problem</span>
+      <h2 id="problem-h">What users actually say</h2>
+      <p>These are public post titles and complaints, quoted verbatim. The pattern isn't “my payment failed”. It's “nobody can tell me where my money is”.</p>
+      <div class="cs-quotes">
+        <figure class="cs-quote">
+          <p>UPI says “processing”, BHIM says “credited”, receiver says “not received” — RBI complaint filed</p>
+          <figcaption><span class="cs-pain">Statuses disagree</span><a href="https://www.reddit.com/r/UPI/comments/1rz57oz/upi_says_processing_bhim_says_credited_receiver/" rel="noopener">Post title, r/UPI</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>Money Debited but UPI Transaction Failed via BHIM and SBI Shows “Success”, BHIM Blames Bank.</p>
+          <figcaption><span class="cs-pain">Blame ping-pong</span><a href="https://www.reddit.com/r/CreditCardsIndia/comments/1kc7rgo/money_debited_but_upi_transaction_failed_via_bhim/" rel="noopener">Post title, r/CreditCardsIndia</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>the maximum time of resolving the complaint is 22nd october 2025</p>
+          <figcaption><span class="cs-pain">Dates far past the rule</span><a href="https://www.consumercomplaints.in/union-bank-of-india-amount-debited-failed-but-amount-not-refunded-c3534042" rel="noopener">₹4,400 school fee failed on 18 Aug 2025, consumercomplaints.in</a></figcaption>
+        </figure>
+        <figure class="cs-quote">
+          <p>Recipient's bank network is down. You're not able to make payment to your recipient's bank.</p>
+          <figcaption><span class="cs-pain">Error copy with no next step</span><a href="https://www.thehindu.com/sci-tech/technology/internet/upi-outage-several-users-say-transactions-failing-npci-says-working-to-resolve-intermittent-technical-issues/article69442396.ece" rel="noopener">Message users saw, The Hindu, 12 Apr 2025</a></figcaption>
+        </figure>
+      </div>
+      <p><strong>Who it hurts</strong> <span class="cs-tag">Hypothesis</span></p>
+      <ul>
+        <li><strong>Ravi, at a pharmacy counter.</strong> The app spins and the shopkeeper says “pay again”. He needs to know in ten seconds whether that's safe.</li>
+        <li><strong>Neha, splitting rent.</strong> ₹8,500 left her bank, but her flatmate didn't get it. She needs a date she can trust and proof she can forward.</li>
+      </ul>
+    </section>
+
+    <section id="insight" aria-labelledby="insight-h">
+      <span class="cs-num">03 · Insight</span>
+      <h2 id="insight-h">Show the clock the rules already started</h2>
+      <ol class="cs-insights">
+        <li><div><strong>Location beats status.</strong> “Failed” describes the payment, but users want to know where the <em>money</em> is: still in their bank, stuck in transit, or with the payee.</div></li>
+        <li><div><strong>A real date beats “5–7 working days”.</strong> Generic copy is often longer than the rule and uses business days, while the rule uses calendar days.</div></li>
+        <li><div><strong>“Don't pay again yet” is the most valuable sentence.</strong> Retrying while a payment is pending risks a double debit, the costliest outcome for the user.</div></li>
+        <li><div><strong>Disputes should be pre-filled, not prevented.</strong> UDIR lets the app file against the exact transaction, so there's no reason to ask for a UTR or a bank statement.</div></li>
+      </ol>
+    </section>
+
+    <section id="flow" aria-labelledby="flow-h">
+      <span class="cs-num">04 · The design</span>
+      <h2 id="flow-h">Refund Clock in four screens</h2>
+      <p>The flow follows one ₹1,240 pharmacy payment from the stuck screen to the refund. Each screen is 390×844, built on the same small design system as my <a href="../rewards-clarity/">Reward Receipt</a> case study.</p>
+      <figure class="cs-fig cs-flow">
+        <img src="../../assets/img/upi-refund-status/flow-960.webp" srcset="../../assets/img/upi-refund-status/flow-960.webp 960w, ../../assets/img/upi-refund-status/flow-1920.webp 1920w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview of four phone screens with arrows: pending payment with a money tracker, refund countdown, one-tap dispute sheet, and refund credited.">
+      </figure>
+      <div class="cs-screens cs-screens-4">
+        <figure class="cs-screen">
+          <img src="../../assets/img/upi-refund-status/s01-result-pending.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Payment result screen for ₹1,240 to Sharma Medicos marked 'Not confirmed yet'. A three-stop tracker shows the money debited from your bank, waiting in the UPI network and not yet received by the shop. An amber card says 'Don't pay again yet', and a card says 'Auto-refund by Mon, 26 Oct' under the RBI T+5 rule.">
+          <figcaption><small>S01 · Pending</small><b>Where your money is</b>A money tracker instead of a spinner, “don't pay again yet”, and the refund deadline before it's even needed.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/upi-refund-status/s02-refund-timeline.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Refund status screen with a purple countdown card: 'Back in your bank by Mon, 26 Oct', 3 days 14 hours left, on a 21 to 26 October track. A timeline shows debited, shop didn't receive it, refund started with a UPI reference, and back in the bank by 26 Oct. A card notes ₹100 a day if late.">
+          <figcaption><small>S02 · Refund timeline</small><b>A countdown to the rule</b>T+5 calendar days for shop payments, time-stamped steps, and the ₹100/day late rule.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/upi-refund-status/s03-dispute-one-tap.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Bottom sheet titled 'Raise a dispute', filed through NPCI. The issue 'Money debited, shop didn't receive it' is pre-selected. Amount, payee, date, UPI reference and bank account are auto-filled. A note says the refund isn't late yet but you can still file.">
+          <figcaption><small>S03 · One-tap dispute</small><b>Pre-filled via UDIR</b>No forms and no statement upload. It's honest about whether the refund is late, but never blocks filing.</figcaption>
+        </figure>
+        <figure class="cs-screen">
+          <img src="../../assets/img/upi-refund-status/s04-refund-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Confirmation screen: '₹1,240 is back' in HDFC Bank on 23 Oct, 3 days before the RBI deadline. A bar shows the refund landed on day 2 of 5, with the refund reference, time taken, and 'Dispute: not needed', plus a 'Pay again' option.">
+          <figcaption><small>S04 · Refunded</small><b>Closure, with proof</b>The amount, account, reference and timing against the deadline, plus a safe “pay again”.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="metrics" aria-labelledby="metrics-h">
+      <span class="cs-num">05 · Success metrics</span>
+      <h2 id="metrics-h">How I'd measure it</h2>
+      <p class="cs-note"><strong>These are proposed definitions, not results.</strong> Nothing here has been built or tested, and a baseline would need internal data.</p>
+      <div class="cs-north">
+        <p class="cs-eyebrow">North star</p>
+        <h3>Calm Resolution Rate</h3>
+        <p>The % of debited-but-not-completed UPI payments where the money is back (or the payment completes) <strong>within the RBI deadline</strong>, with <strong>no repeat payment attempt and no support contact</strong> before that deadline.</p>
+      </div>
+      <div class="cs-cols">
+        <div>
+          <h3>Guardrails</h3>
+          <ul>
+            <li><strong>Duplicate-debit rate:</strong> the same payee and amount paid again within 30 minutes while the first payment is still pending.</li>
+            <li><strong>Escalations beyond the app</strong> (NPCI or the RBI Ombudsman) per 10k failed payments must not rise. Calm mustn't mean suppressing real disputes.</li>
+            <li><strong>Status accuracy:</strong> payments shown as “refunding” that later succeed. The target is close to zero.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Inputs I'd watch</h3>
+          <ul>
+            <li>Support contacts per 1k failed payments.</li>
+            <li>Median time to a final status.</li>
+            <li>Disputes filed before vs after the deadline.</li>
+            <li>Status-check calls per transaction, kept within NPCI's limits.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks" aria-labelledby="risks-h">
+      <span class="cs-num">06 · Risks &amp; next steps</span>
+      <h2 id="risks-h">What could go wrong</h2>
+      <div class="cs-cols">
+        <div>
+          <h3>Risks</h3>
+          <ul>
+            <li><strong>The bank misses the date.</strong> Frame it as “the rules say by…”, not as a Lumo promise, and offer the dispute the moment the deadline passes.</li>
+            <li><strong>Pending turns into success.</strong> Never say “refunding” before there's a final failed status.</li>
+            <li><strong>“Don't pay again” blocks urgent buys</strong>, like medicine. Offer “pay another way” and explain the double-charge risk.</li>
+            <li><strong>Wrong deadline type.</strong> If P2P vs merchant is unknown, show the longer T+5.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I'd do next</h3>
+          <ul>
+            <li>5 quick interviews to test the two hypothesised personas.</li>
+            <li>A cohort dashboard of failed payments by deadline met or missed, and by bank.</li>
+            <li>An A/B test of a generic “5–7 working days” message against the dated countdown, measuring support contacts and duplicate debits.</li>
+            <li>Fill my research gap: app-store reviews and X posts.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="cs-src">Caveats: public posts are self-selected and lean negative. I could read Reddit post titles but not the full threads. The UDIR auto-chargeback timings come from a secondary source (Razorpay).</p>
+    </section>
+
+    <section id="sources" class="cs-sources" aria-labelledby="sources-h">
+      <span class="cs-num">07 · Sources</span>
+      <h2 id="sources-h">Sources</h2>
+      <ol>
+        <li><a href="https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=11693&amp;Mode=0&amp;fn=9" rel="noopener">RBI: Harmonisation of TAT and customer compensation for failed transactions (Sep 2019)</a></li>
+        <li><a href="https://www.rbi.org.in/Commonman/English/Scripts/Notification.aspx?Id=3194" rel="noopener">RBI: Online Dispute Resolution system for digital payments (Aug 2020)</a></li>
+        <li><a href="https://www.npci.org.in/what-we-do/upi/upi-dispute-issue-resolution" rel="noopener">NPCI: UPI Dispute &amp; Issue Resolution</a></li>
+        <li><a href="https://pay.google.com/intl/en_in/about/external/npci/" rel="noopener">Google Pay: NPCI roles and the UPI dispute redressal mechanism</a></li>
+        <li><a href="https://razorpay.com/blog/all-you-need-to-know-about-npci-led-udir/" rel="noopener">Razorpay: all you need to know about NPCI-led UDIR</a></li>
+        <li><a href="https://www.npci.org.in/uploads/UPI_OC_No_214_FY_2025_26_Reduction_in_response_time_of_UPI_Transaction_5d6cd9efe8.pdf" rel="noopener">NPCI OC 214: reduction in UPI response time (Apr 2025)</a></li>
+        <li><a href="https://www.teamleaseregtech.com/updates/article/42023/npci-issued-a-circular-regarding-the-initial-streamlining-of-the-check" rel="noopener">NPCI OC 215: streamlining Check Transaction usage (summary, Apr 2025)</a></li>
+        <li><a href="https://economictimes.indiatimes.com/tech/technology/npci-attributes-upi-outage-to-excessive-api-calls-plans-preventive-measures/articleshow/120316821.cms" rel="noopener">Economic Times: NPCI attributes UPI outage to excessive API calls (Apr 2025)</a></li>
+        <li><a href="https://www.thehindubusinessline.com/money-and-banking/sbi-faces-more-upi-transaction-declines-among-large-banks-axis-bank-the-least/article69461352.ece" rel="noopener">BusinessLine: bank-wise UPI technical declines (Apr 2025)</a></li>
+        <li><a href="https://dataful.in/datasets/18242/" rel="noopener">Dataful: bank-wise UPI payer/payee performance (BD/TD definitions)</a></li>
+        <li><a href="https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23441" rel="noopener">RBI: Annual Report of the Ombudsman Scheme 2024-25</a></li>
+        <li><a href="https://www.thehindu.com/sci-tech/technology/internet/upi-outage-several-users-say-transactions-failing-npci-says-working-to-resolve-intermittent-technical-issues/article69442396.ece" rel="noopener">The Hindu: UPI outage, users say transactions failing (Apr 2025)</a></li>
+        <li><a href="https://support.google.com/pay/india/answer/9494510?hl=en" rel="noopener">Google Pay Help: fix issues with payments to merchants</a></li>
+        <li>User voice: <a href="https://www.reddit.com/r/UPI/comments/1rz57oz/upi_says_processing_bhim_says_credited_receiver/" rel="noopener">r/UPI</a>, <a href="https://www.reddit.com/r/UPI/comments/1vsrzc7/upi_payment_debited_but_receiver_hasnt_received/" rel="noopener">r/UPI</a>, <a href="https://www.reddit.com/r/CreditCardsIndia/comments/1kc7rgo/money_debited_but_upi_transaction_failed_via_bhim/" rel="noopener">r/CreditCardsIndia</a>, <a href="https://www.consumercomplaints.in/union-bank-of-india-amount-debited-failed-but-amount-not-refunded-c3534042" rel="noopener">consumercomplaints.in</a></li>
+      </ol>
+    </section>
+
+    <section aria-label="More">
+      <div class="cs-next">
+        <a class="btn fill" href="../../#work">← Back to all work</a>
+        <a class="btn" href="../rewards-clarity/">Read: Reward Receipt</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Akshat Singh · Independent case study. Not affiliated with Paytm, NPCI, RBI, BHIM, Google Pay or PhonePe.</footer>
+</div>
+</body>
+</html>
