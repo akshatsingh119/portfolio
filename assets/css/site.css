@@ -197,3 +197,29 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 /* ---------- Case study: 4-up screen grid ---------- */
 .cs-screens-4{grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem 1.25rem}
 @media (max-width:860px){.cs-screens-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- Homepage: case study gallery (CSS marquee) ---------- */
+.gallery-sub{color:var(--muted);max-width:40rem;margin:-.5rem 0 1.75rem}
+.marquee{position:relative;overflow:hidden;margin:0 calc(50% - 50vw);padding:.5rem 0 1rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.marquee:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.mq-track{list-style:none;margin:0;padding:0;display:flex;width:max-content;animation:mq-scroll 70s linear infinite}
+.marquee:hover .mq-track,.marquee:focus-within .mq-track{animation-play-state:paused}
+@keyframes mq-scroll{to{transform:translate3d(-50%,0,0)}}
+.mq-item{flex:none;width:11.5rem;margin-right:1.5rem}
+.mq-item a{display:block;text-decoration:none;color:var(--ink)}
+.mq-item img{display:block;width:100%;height:auto;border-radius:20px;border:1px solid var(--line);background:var(--card);box-shadow:0 18px 36px -24px rgba(16,27,51,.45);transition:transform .25s ease,box-shadow .25s ease}
+.mq-item a:hover img,.mq-item a:focus-visible img{transform:translateY(-4px);box-shadow:0 24px 40px -22px rgba(16,27,51,.5)}
+.mq-item a:focus-visible{outline:none}
+.mq-item a:focus-visible img{outline:3px solid var(--accent);outline-offset:3px}
+.mq-tag{display:inline-flex;align-items:center;gap:.4rem;margin-top:.7rem;font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.mq-tag::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
+.mq-tag.rc::before{background:var(--mark)}
+@media (max-width:720px){.mq-item{width:9rem;margin-right:1rem}.mq-item img{border-radius:16px}}
+@media (prefers-reduced-motion:reduce){
+  .mq-track{animation:none}
+  .marquee{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-left:max(1.5rem,calc(50vw - 31rem + 1.5rem))}
+  .mq-item{scroll-snap-align:start}
+  .mq-item[aria-hidden="true"]{display:none}
+}
