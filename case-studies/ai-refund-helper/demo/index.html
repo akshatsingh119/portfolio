@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refund Clock Helper: live AI demo | Akshat Singh</title>
+<meta name="description" content="Try an LLM feature I built: describe a failed UPI payment in English, Hindi or Hinglish and get the RBI refund deadline, next step and a dispute draft, checked by code guardrails.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="wrap">
+  <header class="top">
+    <a href="../../../">Akshat Singh</a>
+    <nav aria-label="Primary">
+      <a href="../../../#work">Work</a>
+      <a href="../../../#about">About</a>
+      <a href="../../../#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="cs demo">
+    <a class="cs-back" href="../../upi-refund-status/">← Refund Clock case study</a>
+
+    <div class="cs-hero demo-hero">
+      <p class="cs-eyebrow">Live demo · LLM feature · Independent project</p>
+      <h1>Ask the Refund <span>Clock</span></h1>
+      <p class="cs-lede">Describe a failed or stuck UPI payment in English, Hindi or Hinglish. An LLM extracts the facts, then code works out the RBI deadline, checks the reply, and turns it into a Refund Clock card.</p>
+      <p class="demo-warn" role="note"><strong>Don't paste real account details.</strong> This is a public demo. Use made-up amounts and names; never enter a UPI PIN, OTP, card or account number. Messages are sent to Google's Gemini API (free tier) and aren't stored by this site.</p>
+    </div>
+
+    <section class="demo-grid" aria-label="Try it">
+      <form id="ask" class="demo-form" novalidate>
+        <div class="demo-samples" role="group" aria-labelledby="samples-h">
+          <p id="samples-h" class="demo-label">Try a sample</p>
+          <div id="samples" class="demo-chips"></div>
+        </div>
+        <label class="demo-label" for="msg">What happened?</label>
+        <textarea id="msg" name="message" rows="5" maxlength="1500" placeholder="e.g. Paid 640 to a kirana shop yesterday, app says failed but money got debited"></textarea>
+        <details id="sms-wrap" class="demo-sms">
+          <summary>Paste a bank SMS (optional)</summary>
+          <textarea id="sms" name="pasted_message" rows="3" maxlength="1500" placeholder="Rs.640 debited from A/c XX1234 via UPI…"></textarea>
+        </details>
+        <div class="demo-row">
+          <span id="count" class="demo-count" aria-live="polite">0 / 1500</span>
+          <button id="go" class="btn fill" type="submit">Check my payment</button>
+        </div>
+        <p id="mode" class="demo-mode" aria-live="polite"></p>
+      </form>
+
+      <div class="demo-out" aria-live="polite" aria-busy="false" id="out">
+        <div class="rc-empty">
+          <p class="demo-label">Your Refund Clock</p>
+          <p>Pick a sample or describe your payment. The card shows the deadline the rules guarantee, what to do next and a dispute message you can copy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-h">
+      <span class="cs-num">Under the hood</span>
+      <h2 id="how-h">One model call, then code has the last word</h2>
+      <ol class="demo-steps">
+        <li><b>Extract.</b> Gemini 3.5 Flash-Lite (temperature 0, JSON-schema output) reads the message as <em>data</em> and returns category, payment type, amount, date, payee and a draft reply. The rules sheet is the only source it may quote.</li>
+        <li><b>Compute.</b> Code, not the model, works out the deadline (T+1 for people, T+5 for shops), whether it has passed, the rules that apply and where to escalate.</li>
+        <li><b>Verify.</b> A validator rejects replies that contradict those facts, invent days, links or phone numbers, or ask for a PIN. It retries once with the verified facts, then falls back to a safe template.</li>
+        <li><b>Protect.</b> The key sits in a Cloudflare Worker. Only this site can call it, input is capped at 1,500 characters, each visitor gets 5 tries a minute and there's a daily cap. If the live model is busy, the page shows a <em>recorded response</em> instead.</li>
+      </ol>
+      <p class="cs-src">Evaluated on 50 synthetic cases (20 held out): 100% classification and correct rule, 0% hallucinated rules, 0% unsafe advice. Latency is the open problem on the free tier. Not legal or financial advice; “Lumo Pay” is fictional.</p>
+    </section>
+  </main>
+
+  <footer>© 2026 Akshat Singh · Independent project. Not affiliated with Paytm, NPCI, RBI or Google.</footer>
+</div>
+<script src="replay.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>
