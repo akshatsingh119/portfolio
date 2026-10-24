@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   // ---- the one config value: the deployed Worker URL. Empty = replay mode only. ----
-  var WORKER_URL = ""; // e.g. "https://refund-helper.<your-subdomain>.workers.dev"
+  var WORKER_URL = "https://refund-helper.akshatsingh119.workers.dev"; // Cloudflare Worker (deployed 24 Oct 2026). Set to "" to force replay mode.
 
   // Local testing only: ?worker=http://localhost:8787 (localhost URLs only).
   try {
