@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 435 888" width="435" height="888">
+  <!-- iPhone 15/16 Pro style frame, in points: body 427x888 (r72), screen 393x852 (r55) inset 17/18. Screen area is transparent. -->
+  <defs>
+    <linearGradient id="btn" x1="0" x2="1">
+      <stop offset="0" stop-color="#1a1b1e"/><stop offset=".45" stop-color="#6d7077"/><stop offset=".7" stop-color="#3c3e43"/><stop offset="1" stop-color="#1f2023"/>
+    </linearGradient>
+    <linearGradient id="btnR" x1="1" x2="0">
+      <stop offset="0" stop-color="#1a1b1e"/><stop offset=".45" stop-color="#6d7077"/><stop offset=".7" stop-color="#3c3e43"/><stop offset="1" stop-color="#1f2023"/>
+    </linearGradient>
+    <!-- brushed titanium: bright edges where the rounded band catches light, darker flat band in between -->
+    <linearGradient id="ti" x1="0" x2="1">
+      <stop offset="0" stop-color="#8a8d93"/><stop offset=".008" stop-color="#5a5d63"/><stop offset=".02" stop-color="#2c2e32"/>
+      <stop offset=".5" stop-color="#3a3c41"/>
+      <stop offset=".98" stop-color="#2c2e32"/><stop offset=".992" stop-color="#5a5d63"/><stop offset="1" stop-color="#7d8086"/>
+    </linearGradient>
+    <linearGradient id="tiV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset=".012" stop-color="#fff" stop-opacity=".06"/>
+      <stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".988" stop-color="#000" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity=".16"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset=".35" stop-color="#fff" stop-opacity=".18"/>
+      <stop offset=".65" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#fff" stop-opacity=".45"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".22" stop-color="#fff" stop-opacity=".05"/>
+      <stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="lens" cx=".42" cy=".38" r=".7">
+      <stop offset="0" stop-color="#2b3a5c"/><stop offset=".45" stop-color="#0d1220"/><stop offset="1" stop-color="#030405"/>
+    </radialGradient>
+    <mask id="hole" maskUnits="userSpaceOnUse" x="0" y="0" width="435" height="888">
+      <rect width="435" height="888" fill="#fff"/>
+      <rect x="21" y="18" width="393" height="852" rx="55" fill="#000"/>
+    </mask>
+    <clipPath id="scr"><rect x="21" y="18" width="393" height="852" rx="55"/></clipPath>
+  </defs>
+
+  <!-- side buttons: Action, volume up/down (left), side button (right) -->
+  <rect x=".6" y="172" width="5.4" height="34" rx="2.2" fill="url(#btn)"/>
+  <rect x=".6" y="238" width="5.4" height="62" rx="2.2" fill="url(#btn)"/>
+  <rect x=".6" y="316" width="5.4" height="62" rx="2.2" fill="url(#btn)"/>
+  <rect x="429" y="268" width="5.4" height="100" rx="2.2" fill="url(#btnR)"/>
+
+  <g mask="url(#hole)">
+    <!-- titanium band -->
+    <rect x="4" y="0" width="427" height="888" rx="72" fill="url(#ti)"/>
+    <rect x="4" y="0" width="427" height="888" rx="72" fill="url(#tiV)"/>
+    <!-- antenna lines -->
+    <g fill="#16171a" fill-opacity=".85">
+      <rect x="86" y="0" width="3" height="4.6"/><rect x="346" y="0" width="3" height="4.6"/>
+      <rect x="86" y="883.4" width="3" height="4.6"/><rect x="346" y="883.4" width="3" height="4.6"/>
+      <rect x="4" y="104" width="4.6" height="3"/><rect x="426.4" y="104" width="4.6" height="3"/>
+      <rect x="4" y="781" width="4.6" height="3"/><rect x="426.4" y="781" width="4.6" height="3"/>
+    </g>
+    <!-- specular edge on the outside of the band -->
+    <rect x="4.6" y=".6" width="425.8" height="886.8" rx="71.4" fill="none" stroke="url(#edge)" stroke-width="1.2"/>
+    <!-- black glass bezel, with a dark seam where metal meets glass -->
+    <rect x="8.4" y="4.4" width="418.2" height="879.2" rx="67.6" fill="#050506"/>
+    <rect x="8.4" y="4.4" width="418.2" height="879.2" rx="67.6" fill="none" stroke="#000" stroke-width="1.4"/>
+    <rect x="9.6" y="5.6" width="415.8" height="876.8" rx="66.4" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width=".8"/>
+  </g>
+
+  <!-- Dynamic Island with the front camera -->
+  <rect x="155" y="29" width="125" height="36.5" rx="18.25" fill="#000"/>
+  <circle cx="261.5" cy="47.25" r="6.6" fill="url(#lens)"/>
+  <circle cx="259.6" cy="45.2" r="1.5" fill="#9fb4ff" fill-opacity=".35"/>
+
+  <!-- cover-glass reflection (subtle) -->
+  <g clip-path="url(#scr)" pointer-events="none">
+    <rect x="21" y="18" width="393" height="852" fill="url(#glass)"/>
+    <path d="M21 18 H190 L21 300 Z" fill="#fff" fill-opacity=".035"/>
+  </g>
+  <rect x="21" y="18" width="393" height="852" rx="55" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+</svg>

@@ -322,31 +322,27 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .pt-static{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:.75rem}
 .pt-static img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 10px 24px -14px rgba(16,27,51,.45)}
 
-/* the phone (CSS only): titanium rim, side buttons, Dynamic Island, glass glare */
-.pt-phone{position:relative;height:var(--ph);aspect-ratio:.48;border-radius:15.5%/7.4%;padding:3.4%;
-  background:linear-gradient(150deg,#4a505c 0%,#1b1e24 22%,#2c3039 55%,#121418 80%,#3a3f49 100%);
-  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22),inset 0 0 0 4px #0a0b0e,0 50px 90px -40px rgba(16,27,51,.6),0 22px 40px -22px rgba(16,27,51,.5)}
-.pt-screen{position:relative;width:100%;height:100%;border-radius:12.6%/5.9%;overflow:hidden;background:#05070c;isolation:isolate;transform:translateZ(0)}
+/* the phone: assets/img/iphone-frame.svg (vector, iPhone 15/16 Pro proportions in pt: 435x888 incl. buttons,
+   body 427x888 r72, screen 393x852 r55 at 21,18). The screen sits under the frame's transparent cutout. */
+.pt-phone{position:relative;height:var(--ph);aspect-ratio:435/888;flex:none}
+.pt-phone::before{content:"";position:absolute;z-index:0;left:.92%;right:.92%;top:0;bottom:0;border-radius:16.86%/8.11%;
+  box-shadow:0 2px 3px rgba(16,27,51,.18),0 26px 40px -18px rgba(16,27,51,.42),0 60px 90px -40px rgba(16,27,51,.5)}
+.pt-screen{position:absolute;z-index:1;left:4.71%;top:1.97%;width:90.57%;height:96.06%;border-radius:14.06%/6.5%;overflow:hidden;background:#05070c}
+.pt-frame{position:absolute;z-index:2;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
 .pt-img,.pt-gimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .pt-img{opacity:0;visibility:hidden;will-change:transform,opacity;box-shadow:0 -18px 36px -10px rgba(5,7,12,.35)}
-.pt-island{position:absolute;z-index:5;top:1.55%;left:50%;width:31%;height:3.5%;transform:translateX(-50%);border-radius:999px;background:#000;box-shadow:inset 0 0 0 1px #15171c}
-.pt-glare{position:absolute;z-index:6;inset:0;pointer-events:none;background:linear-gradient(118deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 26%,transparent 42%)}
-.pt-btn{position:absolute;width:1.2%;border-radius:2px;background:linear-gradient(90deg,#15171b,#4a505b)}
-.pt-btn-a{left:-1%;top:15%;height:4%}.pt-btn-b{left:-1%;top:22%;height:7.5%}.pt-btn-c{left:-1%;top:31%;height:7.5%}
-.pt-btn-p{right:-1%;top:24%;height:11%;background:linear-gradient(270deg,#15171b,#4a505b)}
 
 /* JS on: sticky stage + highlighted steps */
 .pt-on .pt-stage{display:block}
 .pt-on .pt-static{display:none}
 .pt-on .pt-dots{display:flex}
 .pt-on .pt-step{min-height:calc(var(--k) * 44vh);border-top:0;padding:0}
-.pt-on .pt-card{position:sticky;top:calc(50vh - 9rem);padding:1.5rem 0;opacity:.22;transition:opacity .35s ease,transform .35s ease;transform:translateX(-.5rem)}
-.pt-on .pt-step.is-active .pt-card{opacity:1;transform:none}
+.pt-on .pt-card{position:sticky;top:calc(50vh - 9rem);padding:1.5rem 0;opacity:.22;transition:opacity .35s ease}
+.pt-on .pt-step.is-active .pt-card{opacity:1}
 .pt-on .pt-steps{padding:calc(50vh - var(--ph) / 2 - 2rem) 0 0}
 .pt-sticky{position:sticky;top:calc(50vh - var(--ph) / 2 - 1.4rem);height:calc(var(--ph) + 2.8rem);display:flex;flex-direction:column;align-items:center;perspective:1400px}
-.pt-main{z-index:2;transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transform-style:preserve-3d;will-change:transform}
+.pt-main{z-index:2}
 .pt-ghost{position:absolute;top:0;left:50%;z-index:1;will-change:transform}
-.pt-ghost .pt-phone{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),inset 0 0 0 4px #0a0b0e,0 30px 60px -36px rgba(16,27,51,.5)}
 .pt-ghost-l{transform:translate3d(calc(-50% - var(--ph) * .26),calc(var(--ph) * .07 + var(--gy,0px)),0) scale(.78) rotate(-6deg);opacity:.55}
 .pt-ghost-r{transform:translate3d(calc(-50% + var(--ph) * .3),calc(var(--ph) * .07 - var(--gy,0px)),0) scale(.78) rotate(6deg);opacity:.55}
 .pt-cap{margin:.9rem 0 0;font-family:var(--display);font-size:.9rem;color:var(--muted);display:flex;gap:.6rem;align-items:baseline}
@@ -363,6 +359,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
   .pt-cap{margin-top:.5rem}
   .pt-on .pt-steps{padding:0}
   .pt-on .pt-step{min-height:calc(var(--k) * 30vh)}
-  .pt-on .pt-card{top:var(--stage-h,52vh);padding:.4rem 0 1rem;transform:none;opacity:.22}
+  .pt-on .pt-card{top:var(--stage-h,52vh);padding:.4rem 0 1rem;opacity:.22}
   .pt-step h3{font-size:1.55rem;margin-bottom:.5rem}.pt-prob{font-size:1.02rem;line-height:1.5}.pt-fix{font-size:.92rem;line-height:1.5;margin-bottom:.75rem}
 }

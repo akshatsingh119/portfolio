@@ -13,7 +13,7 @@
   const mq = matchMedia('(max-width: 860px)');
   sec.classList.add('pt-on');
 
-  const load = i => { const im = imgs[i]; if (im && !im.src) im.src = im.dataset.src; };
+  const load = i => { const im = imgs[i]; if (im && !im.src) { im.srcset = im.dataset.srcset; im.src = im.dataset.src; } };
   for (let i = 0; i < 3; i++) load(i);
   new IntersectionObserver((es, io) => { if (es.some(e => e.isIntersecting)) { imgs.forEach((_, i) => load(i)); io.disconnect(); } },
     { rootMargin: '100% 0px' }).observe(sec);
@@ -40,12 +40,13 @@
     // gentle 3D turn driven by scroll speed (settles back to flat)
     vy += ((y - lastY) - vy) * .2; lastY = y;
     ry += (clamp(vy * .25, -7, 7) - ry) * .15;
-    main.style.setProperty('--ry', (ry * .6).toFixed(2) + 'deg');
-    main.style.setProperty('--rx', (-ry * .35).toFixed(2) + 'deg');
-    sticky.style.setProperty('--gy', ((u / N - .5) * 40).toFixed(1) + 'px');
+    // the tilt only exists while moving; at rest the phone has no transform at all, so screens stay pixel-sharp
+    main.style.transform = Math.abs(ry) < .05 ? '' : `perspective(1400px) rotateY(${(ry * .6).toFixed(2)}deg) rotateX(${(-ry * .35).toFixed(2)}deg)`;
+    sticky.style.setProperty('--gy', Math.round((u / N - .5) * 40) + 'px');
     if (Math.abs(f - last) > 1e-4) {
       for (let i = 0; i < N; i++) {
         const d = i - f, s = imgs[i].style;
+        if (d === 0) { s.visibility = 'visible'; s.opacity = 1; s.transform = 'none'; s.zIndex = 2; load(i); continue; }
         if (d <= -1 || d >= 1) { if (s.visibility !== 'hidden') { s.visibility = 'hidden'; s.opacity = 0; } continue; }
         load(i); s.visibility = 'visible';
         // incoming screen slides up over the current one (like the app scrolling); the outgoing one recedes
@@ -63,11 +64,11 @@
         cur = c;
         capT.textContent = imgs[c].dataset.study; capN.textContent = `${c + 1} / ${N}`;
         const p = imgs[c - 1] || imgs[c + 1], q = imgs[c + 1] || imgs[c - 1];
-        if (gl.dataset.s !== p.dataset.src) { gl.src = gl.dataset.s = p.dataset.src; }
-        if (gr.dataset.s !== q.dataset.src) { gr.src = gr.dataset.s = q.dataset.src; }
+        const put = (g, im) => { if (g.dataset.s !== im.dataset.src) { g.srcset = im.dataset.srcset; g.src = g.dataset.s = im.dataset.src; } };
+        put(gl, p); put(gr, q);
       }
     }
-    if (live && Math.abs(ry) > .02) raf = requestAnimationFrame(frame); // let the tilt settle
+    if (live && Math.abs(ry) >= .05) raf = requestAnimationFrame(frame); // let the tilt settle
   }
   const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
   new IntersectionObserver(es => { live = es[0].isIntersecting; if (live) { measure(); kick(); } }, { rootMargin: '20% 0px' }).observe(sec);

@@ -15,6 +15,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../../assets/css/site.css">
 <script src="../../assets/js/bg-fx.js" defer></script>
 </head>
@@ -45,7 +48,7 @@
       </dl>
       <p class="cs-note"><strong>Independent concept, not Paytm work.</strong> I built this on my own using only public information: help pages, published T&amp;Cs, NPCI/PIB data, news reports and public user posts. No internal or confidential data from Paytm or any other company. “Lumo Pay” is a fictional brand, and every amount, name and odds figure inside the screens is illustrative.</p>
       <figure class="cs-fig cs-cover">
-        <img src="../../assets/img/rewards-clarity/cover-1600.webp" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Reward Receipt concept: a checkout offer card saying 'You're eligible, ₹10–₹50 cashback, most people get ₹20', a payment success screen with a reward receipt showing ₹25 credited and 'Matches what we showed you', and a rewards wallet in rupees.">
+        <img src="../../assets/img/rewards-clarity/cover-1600.webp" srcset="../../assets/img/rewards-clarity/cover-800.webp 800w, ../../assets/img/rewards-clarity/cover-1600.webp 1600w, ../../assets/img/rewards-clarity/cover-2400.webp 2400w, ../../assets/img/rewards-clarity/cover-3200.webp 3200w" sizes="(max-width: 62rem) calc(100vw - 3rem), 59rem" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Reward Receipt concept: a checkout offer card saying 'You're eligible, ₹10–₹50 cashback, most people get ₹20', a payment success screen with a reward receipt showing ₹25 credited and 'Matches what we showed you', and a rewards wallet in rupees.">
       </figure>
     </div>
 
@@ -222,7 +225,7 @@
       <h2 id="flow-h">The Reward Receipt flow</h2>
       <p>One ₹10–₹50 offer, followed from the payment screen to the wallet. I designed 11 screens (33 states) at 390×844 with a small design system: verdict badges, status pills, ₹-value and expiry chips.</p>
       <figure class="cs-fig cs-flow">
-        <img src="../../assets/img/rewards-clarity/flow-1920.webp" srcset="../../assets/img/rewards-clarity/flow-960.webp 960w, ../../assets/img/rewards-clarity/flow-1920.webp 1920w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview in four steps. Step 1, before paying: an offer card shows eligibility and a ₹10–₹50 range. Step 2, right after paying: a reward receipt shows ₹25 credited and that it matched the promise. Step 3, while it's on the way: a status timeline from promised to credited with a saved offer snapshot. Step 4, any time after: a wallet that values cashback, vouchers and coins in rupees.">
+        <img src="../../assets/img/rewards-clarity/flow-1920.webp" srcset="../../assets/img/rewards-clarity/flow-960.webp 960w, ../../assets/img/rewards-clarity/flow-1920.webp 1920w, ../../assets/img/rewards-clarity/flow-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview in four steps. Step 1, before paying: an offer card shows eligibility and a ₹10–₹50 range. Step 2, right after paying: a reward receipt shows ₹25 credited and that it matched the promise. Step 3, while it's on the way: a status timeline from promised to credited with a saved offer snapshot. Step 4, any time after: a wallet that values cashback, vouchers and coins in rupees.">
         <figcaption>Promise → receipt → status → wallet. The same offer snapshot travels through every step.</figcaption>
       </figure>
 
@@ -230,11 +233,11 @@
       <p>Today, users find out they weren't eligible after they pay. Here, the verdict and the reason show up on the payment screen, with an alternative offer.</p>
       <div class="cs-pair">
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a green 'You're eligible' badge, ₹10–₹50 cashback, 'Most people get ₹20 on this amount', paid to bank within 24 hours, minimum payment ₹200.">
+          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-eligible.webp" srcset="../../assets/img/rewards-clarity/s01-checkout-offer-eligible-390.webp 390w, ../../assets/img/rewards-clarity/s01-checkout-offer-eligible.webp 780w, ../../assets/img/rewards-clarity/s01-checkout-offer-eligible-900.webp 900w, ../../assets/img/rewards-clarity/s01-checkout-offer-eligible-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a green 'You're eligible' badge, ₹10–₹50 cashback, 'Most people get ₹20 on this amount', paid to bank within 24 hours, minimum payment ₹200.">
           <figcaption><small>Eligible</small><b>A range and a typical amount</b>Not “up to”. Form, timing and the one key condition, right where you pay.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a 'Not eligible' badge: 'No cashback on this payment. The ₹10–₹50 offer is for people who haven't paid in 60+ days. Your last payment was 3 days ago', with a suggested alternative offer.">
+          <img src="../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp" srcset="../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible-390.webp 390w, ../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp 780w, ../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible-900.webp 900w, ../../assets/img/rewards-clarity/s01-checkout-offer-not-eligible-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a 'Not eligible' badge: 'No cashback on this payment. The ₹10–₹50 offer is for people who haven't paid in 60+ days. Your last payment was 3 days ago', with a suggested alternative offer.">
           <figcaption><small>Not eligible</small><b>Told before paying, with the reason</b>The 60-day rule users complained about, said plainly, plus something they can use instead.</figcaption>
         </figure>
       </div>
@@ -242,27 +245,27 @@
       <h3>Screen highlights</h3>
       <div class="cs-screens">
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s03-success-reward-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Payment success screen for ₹649 with a Reward Receipt card: ₹25 cashback credited to the bank, and a green note 'Matches what we showed you. We said ₹10–₹50, most people get ₹20.'">
+          <img src="../../assets/img/rewards-clarity/s03-success-reward-credited.webp" srcset="../../assets/img/rewards-clarity/s03-success-reward-credited-390.webp 390w, ../../assets/img/rewards-clarity/s03-success-reward-credited.webp 780w, ../../assets/img/rewards-clarity/s03-success-reward-credited-900.webp 900w, ../../assets/img/rewards-clarity/s03-success-reward-credited-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Payment success screen for ₹649 with a Reward Receipt card: ₹25 cashback credited to the bank, and a green note 'Matches what we showed you. We said ₹10–₹50, most people get ₹20.'">
           <figcaption><small>S03 · Payment success</small><b>A receipt, not a scratch card</b>What you got, where it went, and proof it matched the promise.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s04-status-on-track.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Reward status screen marked 'On track': a timeline of promised, paid, reward issued, processing and credited, an expected date, and a time-stamped snapshot of the offer shown before payment.">
+          <img src="../../assets/img/rewards-clarity/s04-status-on-track.webp" srcset="../../assets/img/rewards-clarity/s04-status-on-track-390.webp 390w, ../../assets/img/rewards-clarity/s04-status-on-track.webp 780w, ../../assets/img/rewards-clarity/s04-status-on-track-900.webp 900w, ../../assets/img/rewards-clarity/s04-status-on-track-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Reward status screen marked 'On track': a timeline of promised, paid, reward issued, processing and credited, an expected date, and a time-stamped snapshot of the offer shown before payment.">
           <figcaption><small>S04 · Status tracker</small><b>“Where's my cashback?” answered</b>A timeline with an ETA and the offer snapshot, so no one needs support to check.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s05-wallet-populated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Rewards wallet showing a total in rupees split into cashback, vouchers and coins, an 'Expiring soon' rail with days-left chips, and coins shown with their rupee value and progress to the redemption minimum.">
+          <img src="../../assets/img/rewards-clarity/s05-wallet-populated.webp" srcset="../../assets/img/rewards-clarity/s05-wallet-populated-390.webp 390w, ../../assets/img/rewards-clarity/s05-wallet-populated.webp 780w, ../../assets/img/rewards-clarity/s05-wallet-populated-900.webp 900w, ../../assets/img/rewards-clarity/s05-wallet-populated-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Rewards wallet showing a total in rupees split into cashback, vouchers and coins, an 'Expiring soon' rail with days-left chips, and coins shown with their rupee value and progress to the redemption minimum.">
           <figcaption><small>S05 · Rewards wallet</small><b>Everything in rupees</b>Coins shown with their ₹ value and redemption threshold. Expiring items come first.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s02-offer-sheet-activated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Offer detail bottom sheet marked 'Activated, you're eligible', with an English/Hindi toggle: who it's for, ₹10–₹50 cashback with a small chart showing ₹20 as most common, three steps to get it, arrival within 24 hours, end date and limits.">
+          <img src="../../assets/img/rewards-clarity/s02-offer-sheet-activated.webp" srcset="../../assets/img/rewards-clarity/s02-offer-sheet-activated-390.webp 390w, ../../assets/img/rewards-clarity/s02-offer-sheet-activated.webp 780w, ../../assets/img/rewards-clarity/s02-offer-sheet-activated-900.webp 900w, ../../assets/img/rewards-clarity/s02-offer-sheet-activated-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Offer detail bottom sheet marked 'Activated, you're eligible', with an English/Hindi toggle: who it's for, ₹10–₹50 cashback with a small chart showing ₹20 as most common, three steps to get it, arrival within 24 hours, end date and limits.">
           <figcaption><small>S02 · Offer details</small><b>T&amp;Cs in plain language</b>Who it's for, the spread of likely amounts, and when it arrives. Activation is a visible step, in English or Hindi.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s09-dispute-draft.webp" width="780" height="1688" loading="lazy" decoding="async" alt="'Something's wrong?' dispute screen with the offer shown and the payment already attached, marked 'No screenshots needed', a reason picker and a 48-hour reply time.">
+          <img src="../../assets/img/rewards-clarity/s09-dispute-draft.webp" srcset="../../assets/img/rewards-clarity/s09-dispute-draft-390.webp 390w, ../../assets/img/rewards-clarity/s09-dispute-draft.webp 780w, ../../assets/img/rewards-clarity/s09-dispute-draft-900.webp 900w, ../../assets/img/rewards-clarity/s09-dispute-draft-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="'Something's wrong?' dispute screen with the offer shown and the payment already attached, marked 'No screenshots needed', a reason picker and a 48-hour reply time.">
           <figcaption><small>S09 · Dispute</small><b>Evidence already attached</b>The offer snapshot and payment go with the report, instead of a screen recording.</figcaption>
         </figure>
         <figure class="cs-screen">
-          <img src="../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Concept test screen 'Guaranteed + Bonus': a reward receipt splitting a guaranteed amount shown before payment from a separately labelled bonus with disclosed odds.">
+          <img src="../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus.webp" srcset="../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus-390.webp 390w, ../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus.webp 780w, ../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus-900.webp 900w, ../../assets/img/rewards-clarity/s11-guaranteed-plus-bonus-1170.webp 1170w" sizes="(max-width: 720px) 45vw, (max-width: 860px) 46vw, 22rem" width="780" height="1688" loading="lazy" decoding="async" alt="Concept test screen 'Guaranteed + Bonus': a reward receipt splitting a guaranteed amount shown before payment from a separately labelled bonus with disclosed odds.">
           <figcaption><small>S11 · Concept test</small><b>Guaranteed + bonus</b>Option C as an A/B variant: a certain amount, with any bonus and its odds disclosed up front.</figcaption>
         </figure>
       </div>
