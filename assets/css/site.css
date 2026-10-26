@@ -34,10 +34,12 @@ header.top a:hover{color:var(--accent)}
 body{position:relative;overflow-x:hidden}
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 10%,transparent 75%)}
-.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:var(--oa);will-change:transform}
-.o1{width:38rem;height:38rem;background:var(--o1);top:-14rem;right:-10rem;animation:drift1 26s ease-in-out infinite alternate}
-.o2{width:30rem;height:30rem;background:var(--o2);top:30vh;left:-12rem;animation:drift2 32s ease-in-out infinite alternate}
-.o3{width:18rem;height:18rem;background:var(--o3);bottom:-6rem;right:12%;opacity:calc(var(--oa) * .6);animation:drift1 38s ease-in-out infinite alternate-reverse}
+/* orbs: a soft radial gradient instead of filter:blur(80px) (same look, a fraction of the paint cost while scrolling) */
+.orb{position:absolute;border-radius:50%;opacity:var(--oa);will-change:transform;margin:-10rem;--c:var(--o1);
+  background:radial-gradient(closest-side,var(--c) 0%,var(--c) 38%,color-mix(in srgb,var(--c) 62%,transparent) 58%,color-mix(in srgb,var(--c) 24%,transparent) 78%,transparent 100%)}
+.o1{width:58rem;height:58rem;--c:var(--o1);top:-14rem;right:-10rem;animation:drift1 26s ease-in-out infinite alternate}
+.o2{width:50rem;height:50rem;--c:var(--o2);top:30vh;left:-12rem;animation:drift2 32s ease-in-out infinite alternate}
+.o3{width:38rem;height:38rem;--c:var(--o3);bottom:-6rem;right:12%;opacity:calc(var(--oa) * .6);animation:drift1 38s ease-in-out infinite alternate-reverse}
 @keyframes drift1{to{transform:translate3d(-8rem,6rem,0) scale(1.15)}}
 @keyframes drift2{to{transform:translate3d(10rem,-5rem,0) scale(1.2)}}
 .wrap{position:relative;z-index:1}
@@ -297,3 +299,70 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .bgfx{position:absolute;inset:0;width:100%;height:100%;display:block}
 :root[data-bg="e"] .bg::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse min(44rem,72vw) 80% at 50% 45%,color-mix(in srgb,var(--paper) 62%,transparent) 30%,transparent 82%)}
+
+/* =====================================================================
+   Homepage: scroll-driven phone tour (#tour, assets/js/phone-tour.js).
+   Without JS or with prefers-reduced-motion it stays a static, stacked list of screens.
+   ===================================================================== */
+.pt-eyebrow{font-family:var(--display);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 .5rem}
+.pt-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);grid-template-areas:"steps stage";gap:0 2.5rem;--ph:min(72vh,600px)}
+.pt-stage{grid-area:stage;display:none}
+.pt-steps{grid-area:steps}
+.pt-step{padding:1.5rem 0;border-top:1px solid var(--line)}
+.pt-step:first-child{border-top:0}
+.pt-kicker{font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--muted);margin:0 0 .35rem;display:flex;align-items:center;gap:.5rem}
+.pt-num{font-variant-numeric:tabular-nums;color:var(--accent)}
+.pt-step h3{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em;line-height:1.05;margin:0 0 .75rem}
+.pt-prob{margin:0 0 .6rem;font-size:1.15rem}
+.pt-fix{margin:0 0 1rem;color:var(--muted);font-size:1rem}
+.pt-dots{display:none;gap:.35rem;margin:0 0 1rem}
+.pt-dots i{display:block;width:1.6rem;height:4px;border-radius:4px;background:var(--line);overflow:hidden;position:relative}
+.pt-dots i::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--f,0));transform-origin:left}
+.pt-step .case-more{margin:0}
+.pt-static{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:.75rem}
+.pt-static img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 10px 24px -14px rgba(16,27,51,.45)}
+
+/* the phone (CSS only): titanium rim, side buttons, Dynamic Island, glass glare */
+.pt-phone{position:relative;height:var(--ph);aspect-ratio:.48;border-radius:15.5%/7.4%;padding:3.4%;
+  background:linear-gradient(150deg,#4a505c 0%,#1b1e24 22%,#2c3039 55%,#121418 80%,#3a3f49 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22),inset 0 0 0 4px #0a0b0e,0 50px 90px -40px rgba(16,27,51,.6),0 22px 40px -22px rgba(16,27,51,.5)}
+.pt-screen{position:relative;width:100%;height:100%;border-radius:12.6%/5.9%;overflow:hidden;background:#05070c;isolation:isolate;transform:translateZ(0)}
+.pt-img,.pt-gimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.pt-img{opacity:0;visibility:hidden;will-change:transform,opacity;box-shadow:0 -18px 36px -10px rgba(5,7,12,.35)}
+.pt-island{position:absolute;z-index:5;top:1.55%;left:50%;width:31%;height:3.5%;transform:translateX(-50%);border-radius:999px;background:#000;box-shadow:inset 0 0 0 1px #15171c}
+.pt-glare{position:absolute;z-index:6;inset:0;pointer-events:none;background:linear-gradient(118deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 26%,transparent 42%)}
+.pt-btn{position:absolute;width:1.2%;border-radius:2px;background:linear-gradient(90deg,#15171b,#4a505b)}
+.pt-btn-a{left:-1%;top:15%;height:4%}.pt-btn-b{left:-1%;top:22%;height:7.5%}.pt-btn-c{left:-1%;top:31%;height:7.5%}
+.pt-btn-p{right:-1%;top:24%;height:11%;background:linear-gradient(270deg,#15171b,#4a505b)}
+
+/* JS on: sticky stage + highlighted steps */
+.pt-on .pt-stage{display:block}
+.pt-on .pt-static{display:none}
+.pt-on .pt-dots{display:flex}
+.pt-on .pt-step{min-height:calc(var(--k) * 44vh);border-top:0;padding:0}
+.pt-on .pt-card{position:sticky;top:calc(50vh - 9rem);padding:1.5rem 0;opacity:.22;transition:opacity .35s ease,transform .35s ease;transform:translateX(-.5rem)}
+.pt-on .pt-step.is-active .pt-card{opacity:1;transform:none}
+.pt-on .pt-steps{padding:calc(50vh - var(--ph) / 2 - 2rem) 0 0}
+.pt-sticky{position:sticky;top:calc(50vh - var(--ph) / 2 - 1.4rem);height:calc(var(--ph) + 2.8rem);display:flex;flex-direction:column;align-items:center;perspective:1400px}
+.pt-main{z-index:2;transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transform-style:preserve-3d;will-change:transform}
+.pt-ghost{position:absolute;top:0;left:50%;z-index:1;will-change:transform}
+.pt-ghost .pt-phone{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),inset 0 0 0 4px #0a0b0e,0 30px 60px -36px rgba(16,27,51,.5)}
+.pt-ghost-l{transform:translate3d(calc(-50% - var(--ph) * .26),calc(var(--ph) * .07 + var(--gy,0px)),0) scale(.78) rotate(-6deg);opacity:.55}
+.pt-ghost-r{transform:translate3d(calc(-50% + var(--ph) * .3),calc(var(--ph) * .07 - var(--gy,0px)),0) scale(.78) rotate(6deg);opacity:.55}
+.pt-cap{margin:.9rem 0 0;font-family:var(--display);font-size:.9rem;color:var(--muted);display:flex;gap:.6rem;align-items:baseline}
+.pt-cap b{color:var(--ink)}
+.pt-cap-n{font-variant-numeric:tabular-nums}
+
+@media (max-width:860px){
+  .pt-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"stage" "steps";--ph:min(46vh,400px)}
+  .pt-on .pt-stage{position:sticky;top:0;z-index:3;margin:0 -1.5rem;padding:.6rem 1.5rem .9rem;
+    background:linear-gradient(var(--paper) 90%,color-mix(in srgb,var(--paper) 0%,transparent))}
+  .pt-sticky{position:relative;top:0;height:auto}
+  .pt-ghost-l{transform:translate3d(calc(-50% - var(--ph) * .27),calc(var(--ph) * .08 + var(--gy,0px)),0) scale(.74) rotate(-6deg)}
+  .pt-ghost-r{transform:translate3d(calc(-50% + var(--ph) * .27),calc(var(--ph) * .08 - var(--gy,0px)),0) scale(.74) rotate(6deg)}
+  .pt-cap{margin-top:.5rem}
+  .pt-on .pt-steps{padding:0}
+  .pt-on .pt-step{min-height:calc(var(--k) * 30vh)}
+  .pt-on .pt-card{top:var(--stage-h,52vh);padding:.4rem 0 1rem;transform:none;opacity:.22}
+  .pt-step h3{font-size:1.55rem;margin-bottom:.5rem}.pt-prob{font-size:1.02rem;line-height:1.5}.pt-fix{font-size:.92rem;line-height:1.5;margin-bottom:.75rem}
+}
