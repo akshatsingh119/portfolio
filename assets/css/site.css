@@ -241,7 +241,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 
 /* =====================================================================
    Background variants (bg-refresh). Default = current look.
-   Pick one by adding data-bg="a" | "b" | "c" to <html> on every page,
+   Pick one by adding data-bg="a" | "b" | "c" (static) or "e" (interactive living gradient) to <html> on every page,
    or preview any page with ?bg=a / ?bg=b / ?bg=c.
    A = Paper (warm cream, dot grid, one warm glow)
    B = Ink   (full dark navy, indigo/teal aurora)
@@ -288,3 +288,12 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 :root[data-bg="c"] .o2{width:30rem;height:30rem;top:35vh;left:-16rem;opacity:calc(var(--oa) * .75)}
 :root[data-bg="c"] .o3{width:30rem;height:26rem;bottom:-12rem;right:6%;opacity:calc(var(--oa) * .8)}
 @media (max-width:720px){:root[data-bg="c"] .o2{top:60vh;opacity:calc(var(--oa) * .5)}}
+
+/* =====================================================================
+   Optional interactive backdrop E (assets/js/bg-fx.js): data-bg="e" or ?bg=e.
+   Slow living gradient in the default palette; a scrim keeps the text column AA.
+   ===================================================================== */
+:root[data-bg="e"] .orb,:root[data-bg="e"] .bg::before{display:none}
+.bgfx{position:absolute;inset:0;width:100%;height:100%;display:block}
+:root[data-bg="e"] .bg::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse min(44rem,72vw) 80% at 50% 45%,color-mix(in srgb,var(--paper) 62%,transparent) 30%,transparent 82%)}
