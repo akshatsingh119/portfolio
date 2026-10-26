@@ -216,6 +216,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .mq-tag{display:inline-flex;align-items:center;gap:.4rem;margin-top:.7rem;font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .mq-tag::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
 .mq-tag.rc::before{background:var(--mark)}
+.mq-tag.ai::before{background:#22C38E;box-shadow:0 0 0 3px rgba(34,195,142,.25)}
 @media (max-width:720px){.mq-item{width:9rem;margin-right:1rem}.mq-item img{border-radius:16px}}
 @media (prefers-reduced-motion:reduce){
   .mq-track{animation:none}
@@ -223,3 +224,17 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
   .mq-item{scroll-snap-align:start}
   .mq-item[aria-hidden="true"]{display:none}
 }
+
+/* ---------- Live AI demo: pill, homepage thumbnail, case-study callout ---------- */
+.live-pill{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#4B3CF0,#2B1FB8);padding:.2rem .6rem .2rem .5rem;border-radius:999px;vertical-align:.1em;margin-right:.35rem;white-space:nowrap}
+.live-pill::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:#7CF0C8;box-shadow:0 0 0 3px rgba(124,240,200,.3)}
+.case-thumb{display:block;margin-top:1rem}
+.case-thumb img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:0 18px 36px -24px rgba(16,27,51,.45);transition:transform .25s ease}
+.case-thumb:hover img{transform:translateY(-3px)}
+@media (max-width:720px){.case-thumb{max-width:26rem}}
+.cs-followup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.5rem 2rem;align-items:center;border:2px solid var(--accent);border-radius:16px;padding:1.5rem;background:var(--card)}
+.cs-followup h2{margin:.2rem 0 .8rem}
+.cs-followup p{font-size:1.02rem}
+.cs-followup img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.cs-followup .btns{margin-top:.5rem}
+@media (max-width:720px){.cs-followup{grid-template-columns:1fr;padding:1.2rem}}

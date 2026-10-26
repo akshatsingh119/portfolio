@@ -81,3 +81,4 @@ button.btn.fill{background:var(--ink)}
 .demo-steps b{font-family:var(--display)}
 @media (max-width:860px){.demo-grid{grid-template-columns:1fr}}
 @media (max-width:480px){.rc-big{font-size:1.45rem}.rc-count span{min-width:2.7rem;font-size:1.1rem}.rc-facts{grid-template-columns:1fr 1fr}}
+.demo-back{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;margin:0}

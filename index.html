@@ -72,6 +72,23 @@
 
       <article class="case">
         <div>
+          <h3>Refund Clock Helper</h3>
+          <p class="tag"><span class="live-pill">Live AI demo</span> LLM feature · built on the Refund Clock case study</p>
+          <a class="case-thumb" href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/cover-1600.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Refund Clock Helper: a live AI demo answering a failed UPI payment with the refund date, ₹640 back by Sat 31 Oct."></a>
+        </div>
+        <div>
+          <dl>
+            <dt>Problem</dt><dd>People describe a stuck UPI payment in their own words (English, Hindi, Hinglish, a pasted bank SMS), and the RBI rules that answer them sit in circulars nobody reads.</dd>
+            <dt>My role</dt><dd>Product manager, solo: PRD, a 50-case eval set with quality bars, prompt iterations and the guardrails, then shipping the live demo.</dd>
+            <dt>Decisions</dt><dd>The model only extracts facts. Code works out the RBI deadline and escalation, a validator rejects replies that invent days, links or phone numbers or ask for a PIN, and the reply falls back to a safe template.</dd>
+            <dt>Outcome</dt><dd>Live, built with Gemini behind a Cloudflare Worker. Evaluated on 50 synthetic cases (20 held out): 100% classification and correct rule, 0% hallucinated rules, 0% unsafe advice. Speed on the free tier is still the open issue.</dd>
+          </dl>
+          <p class="case-more"><a href="case-studies/ai-refund-helper/demo/">Try the live AI demo →</a></p>
+        </div>
+      </article>
+
+      <article class="case">
+        <div>
           <h3>Media Lounge</h3>
           <p class="tag">Mas Movil super app · content streaming and channel viewing</p>
         </div>
@@ -129,26 +146,32 @@
 
     <section id="gallery" class="gallery" aria-labelledby="gallery-h">
       <h2 id="gallery-h">Case study gallery</h2>
-      <p class="gallery-sub">Screens from my independent case studies. Tap any screen to read the case study behind it.</p>
+      <p class="gallery-sub">Screens from my independent case studies and the live AI demo. Tap any screen to open the work behind it.</p>
       <div class="marquee" role="region" aria-label="Case study screens, scrolling" tabindex="0">
         <ul class="mq-track">
           <li class="mq-item"><a href="case-studies/rewards-clarity/"><img src="assets/img/rewards-clarity/s01-checkout-offer-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with an honest offer card: eligible for ₹10–₹50 cashback, most people get ₹20."><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item"><a href="case-studies/upi-refund-status/"><img src="assets/img/upi-refund-status/s01-result-pending.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Pending UPI payment showing where the money is: debited from your bank, waiting in the UPI network, not yet with the shop."><span class="mq-tag rc">Refund Clock</span></a></li>
           <li class="mq-item"><a href="case-studies/rewards-clarity/"><img src="assets/img/rewards-clarity/s03-success-reward-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Payment success screen with a reward receipt: ₹25 cashback credited, matching what was shown."><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item"><a href="case-studies/upi-refund-status/"><img src="assets/img/upi-refund-status/s02-refund-timeline.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Refund status with a countdown: back in your bank by Mon, 26 Oct, the RBI T+5 deadline."><span class="mq-tag rc">Refund Clock</span></a></li>
+          <li class="mq-item"><a href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/ai-s01-live-answer.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Live AI answer: ₹640 to Gupta Kirana, back in your bank by Sat 31 Oct under the RBI T+5 rule, with the next step."><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item"><a href="case-studies/rewards-clarity/"><img src="assets/img/rewards-clarity/s04-status-on-track.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Reward status tracker marked on track, with a timeline and a snapshot of the offer shown before paying."><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item"><a href="case-studies/upi-refund-status/"><img src="assets/img/upi-refund-status/s03-dispute-one-tap.webp" width="780" height="1688" loading="lazy" decoding="async" alt="One-tap dispute sheet, pre-filled with amount, payee, date and UPI reference."><span class="mq-tag rc">Refund Clock</span></a></li>
           <li class="mq-item"><a href="case-studies/rewards-clarity/"><img src="assets/img/rewards-clarity/s05-wallet-populated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Rewards wallet with cashback, vouchers and coins all valued in rupees, expiring items first."><span class="mq-tag rr">Reward Receipt</span></a></li>
+          <li class="mq-item"><a href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/ai-s02-scam-stop.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Live AI answer to a fake 'refund on hold' SMS: this looks like a scam, call 1930 and report on cybercrime.gov.in."><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item"><a href="case-studies/upi-refund-status/"><img src="assets/img/upi-refund-status/s04-refund-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Refund confirmation: ₹1,240 is back, 3 days before the RBI deadline."><span class="mq-tag rc">Refund Clock</span></a></li>
+          <li class="mq-item"><a href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/ai-s03-late-refund.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Live AI answer for a late refund: the T+5 deadline passed on 26 Oct, so ₹100 per day of delay is owed."><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item"><a href="case-studies/rewards-clarity/"><img src="assets/img/rewards-clarity/s02-offer-sheet-activated.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Offer detail sheet: activated, eligible, ₹10–₹50 cashback with steps and timing."><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/rewards-clarity/" tabindex="-1"><img src="assets/img/rewards-clarity/s01-checkout-offer-eligible.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/upi-refund-status/" tabindex="-1"><img src="assets/img/upi-refund-status/s01-result-pending.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rc">Refund Clock</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/rewards-clarity/" tabindex="-1"><img src="assets/img/rewards-clarity/s03-success-reward-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/upi-refund-status/" tabindex="-1"><img src="assets/img/upi-refund-status/s02-refund-timeline.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rc">Refund Clock</span></a></li>
+          <li class="mq-item" aria-hidden="true"><a href="case-studies/ai-refund-helper/demo/" tabindex="-1"><img src="assets/img/ai-refund-helper/ai-s01-live-answer.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/rewards-clarity/" tabindex="-1"><img src="assets/img/rewards-clarity/s04-status-on-track.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rr">Reward Receipt</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/upi-refund-status/" tabindex="-1"><img src="assets/img/upi-refund-status/s03-dispute-one-tap.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rc">Refund Clock</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/rewards-clarity/" tabindex="-1"><img src="assets/img/rewards-clarity/s05-wallet-populated.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rr">Reward Receipt</span></a></li>
+          <li class="mq-item" aria-hidden="true"><a href="case-studies/ai-refund-helper/demo/" tabindex="-1"><img src="assets/img/ai-refund-helper/ai-s02-scam-stop.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/upi-refund-status/" tabindex="-1"><img src="assets/img/upi-refund-status/s04-refund-credited.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rc">Refund Clock</span></a></li>
+          <li class="mq-item" aria-hidden="true"><a href="case-studies/ai-refund-helper/demo/" tabindex="-1"><img src="assets/img/ai-refund-helper/ai-s03-late-refund.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag ai">Live AI demo</span></a></li>
           <li class="mq-item" aria-hidden="true"><a href="case-studies/rewards-clarity/" tabindex="-1"><img src="assets/img/rewards-clarity/s02-offer-sheet-activated.webp" width="780" height="1688" loading="lazy" decoding="async" alt=""><span class="mq-tag rr">Reward Receipt</span></a></li>
         </ul>
       </div>

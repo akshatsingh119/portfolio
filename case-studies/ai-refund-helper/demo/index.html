@@ -3,9 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Refund Clock Helper: live AI demo | Akshat Singh</title>
-<meta name="description" content="Try an LLM feature I built: describe a failed UPI payment in English, Hindi or Hinglish and get the RBI refund deadline, next step and a dispute draft, checked by code guardrails.">
-<meta name="robots" content="noindex">
+<title>Refund Clock Helper: live AI demo for failed UPI payments | Akshat Singh</title>
+<meta name="description" content="Live AI demo by Akshat Singh: describe a failed UPI payment in English, Hindi or Hinglish and get the RBI refund deadline, next step and a dispute draft. Built with Gemini, checked by code guardrails, evaluated on 50 cases.">
+<link rel="canonical" href="https://akshatsingh119.github.io/portfolio/case-studies/ai-refund-helper/demo/">
+<meta property="og:title" content="Refund Clock Helper: live AI demo | Akshat Singh">
+<meta property="og:description" content="Describe a failed UPI payment and get the RBI refund deadline, next step and a dispute draft. Built with Gemini behind a Cloudflare Worker, checked by code guardrails, evaluated on 50 cases.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://akshatsingh119.github.io/portfolio/case-studies/ai-refund-helper/demo/">
+<meta property="og:image" content="https://akshatsingh119.github.io/portfolio/assets/img/ai-refund-helper/og-cover-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -25,12 +33,18 @@
   </header>
 
   <main class="cs demo">
-    <a class="cs-back" href="../../upi-refund-status/">← Refund Clock case study</a>
+    <p class="demo-back"><a class="cs-back" href="../../../#work">← Back to work</a> <a class="cs-back" href="../../upi-refund-status/">Read the Refund Clock case study</a></p>
 
     <div class="cs-hero demo-hero">
-      <p class="cs-eyebrow">Live demo · LLM feature · Independent project</p>
+      <p class="cs-eyebrow">Live AI demo · LLM feature · Independent project</p>
       <h1>Ask the Refund <span>Clock</span></h1>
       <p class="cs-lede">Describe a failed or stuck UPI payment in English, Hindi or Hinglish. An LLM extracts the facts, then code works out the RBI deadline, checks the reply, and turns it into a Refund Clock card.</p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product manager (solo)</dd></div>
+        <div><dt>Built with</dt><dd>Gemini + Cloudflare Worker</dd></div>
+        <div><dt>Evaluated on</dt><dd>50 test cases</dd></div>
+        <div><dt>Date</dt><dd>Oct 2026</dd></div>
+      </dl>
       <p class="demo-warn" role="note"><strong>Don't paste real account details.</strong> This is a public demo. Use made-up amounts and names; never enter a UPI PIN, OTP, card or account number. Messages are sent to Google's Gemini API (free tier) and aren't stored by this site.</p>
     </div>
 
