@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var b=new URLSearchParams(location.search).get("bg");if(/^[a-ce]$/.test(b))document.documentElement.setAttribute("data-bg",b)})()</script>
+<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cream";d.setAttribute("data-warm",t);if(q)d.setAttribute("data-preview","")})()</script>
 <title>Reward Receipt: making cashback honest | Akshat Singh</title>
 <meta name="description" content="Independent product case study: why cashback and scratch-card rewards in Indian UPI apps feel like bait, and a Reward Receipt flow that shows the real reward before you pay.">
 <meta property="og:title" content="Reward Receipt: making cashback honest | Akshat Singh">
@@ -48,7 +48,7 @@
       </dl>
       <p class="cs-note"><strong>Independent concept, not Paytm work.</strong> I built this on my own using only public information: help pages, published T&amp;Cs, NPCI/PIB data, news reports and public user posts. No internal or confidential data from Paytm or any other company. “Lumo Pay” is a fictional brand, and every amount, name and odds figure inside the screens is illustrative.</p>
       <figure class="cs-fig cs-cover">
-        <img src="../../assets/img/rewards-clarity/cover-1600.webp" srcset="../../assets/img/rewards-clarity/cover-800.webp 800w, ../../assets/img/rewards-clarity/cover-1600.webp 1600w, ../../assets/img/rewards-clarity/cover-2400.webp 2400w, ../../assets/img/rewards-clarity/cover-3200.webp 3200w" sizes="(max-width: 62rem) calc(100vw - 3rem), 59rem" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Reward Receipt concept: a checkout offer card saying 'You're eligible, ₹10–₹50 cashback, most people get ₹20', a payment success screen with a reward receipt showing ₹25 credited and 'Matches what we showed you', and a rewards wallet in rupees.">
+        <img src="../../assets/img/rewards-clarity/cover-cream-1600.webp" srcset="../../assets/img/rewards-clarity/cover-cream-800.webp 800w, ../../assets/img/rewards-clarity/cover-cream-1600.webp 1600w, ../../assets/img/rewards-clarity/cover-cream-2400.webp 2400w, ../../assets/img/rewards-clarity/cover-cream-3200.webp 3200w" sizes="(max-width: 62rem) calc(100vw - 3rem), 59rem" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Reward Receipt concept: a checkout offer card saying 'You're eligible, ₹10–₹50 cashback, most people get ₹20', a payment success screen with a reward receipt showing ₹25 credited and 'Matches what we showed you', and a rewards wallet in rupees.">
       </figure>
     </div>
 
@@ -225,7 +225,7 @@
       <h2 id="flow-h">The Reward Receipt flow</h2>
       <p>One ₹10–₹50 offer, followed from the payment screen to the wallet. I designed 11 screens (33 states) at 390×844 with a small design system: verdict badges, status pills, ₹-value and expiry chips.</p>
       <figure class="cs-fig cs-flow">
-        <img src="../../assets/img/rewards-clarity/flow-1920.webp" srcset="../../assets/img/rewards-clarity/flow-960.webp 960w, ../../assets/img/rewards-clarity/flow-1920.webp 1920w, ../../assets/img/rewards-clarity/flow-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview in four steps. Step 1, before paying: an offer card shows eligibility and a ₹10–₹50 range. Step 2, right after paying: a reward receipt shows ₹25 credited and that it matched the promise. Step 3, while it's on the way: a status timeline from promised to credited with a saved offer snapshot. Step 4, any time after: a wallet that values cashback, vouchers and coins in rupees.">
+        <img src="../../assets/img/rewards-clarity/flow-cream-1920.webp" srcset="../../assets/img/rewards-clarity/flow-cream-960.webp 960w, ../../assets/img/rewards-clarity/flow-cream-1920.webp 1920w, ../../assets/img/rewards-clarity/flow-cream-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview in four steps. Step 1, before paying: an offer card shows eligibility and a ₹10–₹50 range. Step 2, right after paying: a reward receipt shows ₹25 credited and that it matched the promise. Step 3, while it's on the way: a status timeline from promised to credited with a saved offer snapshot. Step 4, any time after: a wallet that values cashback, vouchers and coins in rupees.">
         <figcaption>Promise → receipt → status → wallet. The same offer snapshot travels through every step.</figcaption>
       </figure>
 
@@ -382,5 +382,6 @@
 
   <footer>© 2026 Akshat Singh · Independent case study. Not affiliated with Paytm, PhonePe, Google Pay, CRED, Amazon Pay, BHIM or super.money.</footer>
 </div>
+<script src="../../assets/js/theme.js" defer></script>
 </body>
 </html>

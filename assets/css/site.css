@@ -27,7 +27,7 @@ header.top a:hover{color:var(--accent)}
 .btns{display:flex;flex-wrap:wrap;gap:.75rem}
 .btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.8rem 1.3rem;border-radius:999px;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
 .btn.fill{background:var(--ink);color:var(--paper)}
-.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent,#fff)}
 
 
 
@@ -54,7 +54,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem)
 .case dl{margin:0;display:grid;grid-template-columns:7rem minmax(0,1fr);gap:.9rem 1.25rem}
 .case dt{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--accent)}
 .case dd{margin:0;max-width:60ch}
-.todo{background:var(--mark);color:#101B33;padding:0 .35em;border-radius:3px;font-size:.95em}
+.todo{background:var(--mark);color:var(--on-mark,#101B33);padding:0 .35em;border-radius:3px;font-size:.95em}
 
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem 2.5rem}
 .skills h3{font-family:var(--display);font-size:1.1rem;margin:0 0 .4rem}
@@ -95,7 +95,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .cs-fig{margin:0}
 .cs-fig img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line);background:var(--card)}
 .cs-fig figcaption{font-size:.95rem;color:var(--muted);margin-top:.7rem;max-width:60ch}
-.cs-cover img{box-shadow:0 30px 60px -30px rgba(16,27,51,.35)}
+.cs-cover img{box-shadow:0 30px 60px -30px rgb(var(--sh,16 27 51) / .35)}
 
 .cs section h2{margin-bottom:1.25rem}
 .cs-num{display:block;font-family:var(--display);font-weight:700;font-size:.85rem;letter-spacing:.08em;color:var(--accent);margin:0 0 .5rem}
@@ -107,7 +107,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .cs li::marker{color:var(--accent);font-family:var(--display);font-weight:700}
 .cs .hl{background:linear-gradient(transparent 60%,var(--mark) 60% 90%,transparent 90%);color:inherit}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cs .hl{background:linear-gradient(transparent 84%,var(--mark) 84% 96%,transparent 96%)}}
-.cs-tag{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:4px;background:var(--mark);color:#101B33;vertical-align:.1em;white-space:nowrap}
+.cs-tag{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:4px;background:var(--mark);color:var(--on-mark,#101B33);vertical-align:.1em;white-space:nowrap}
 .cs-src{font-size:.9rem;color:var(--muted)}
 .cs-src a{color:var(--muted)}
 .cs-src a:hover{color:var(--accent)}
@@ -156,7 +156,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .cs-flow{margin:1.5rem 0 2.5rem}
 .cs-screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.5rem;margin:1.25rem 0 2rem}
 .cs-screen{margin:0}
-.cs-screen img{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 40px -24px rgba(16,27,51,.4)}
+.cs-screen img{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 40px -24px rgb(var(--sh,16 27 51) / .4)}
 .cs-screen figcaption{margin-top:.8rem;font-size:.98rem;line-height:1.5}
 .cs-screen figcaption b{display:block;font-family:var(--display);font-weight:700;font-size:1.02rem;margin-bottom:.15rem}
 .cs-screen figcaption small{display:block;font-family:var(--display);font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem}
@@ -204,10 +204,10 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .gallery-sub{color:var(--muted);max-width:40rem;margin:-.5rem 0 1.75rem}
 
 /* ---------- Live AI demo: pill, homepage thumbnail, case-study callout ---------- */
-.live-pill{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#4B3CF0,#2B1FB8);padding:.2rem .6rem .2rem .5rem;border-radius:999px;vertical-align:.1em;margin-right:.35rem;white-space:nowrap}
+.live-pill{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--pill1,#4B3CF0),var(--pill2,#2B1FB8));padding:.2rem .6rem .2rem .5rem;border-radius:999px;vertical-align:.1em;margin-right:.35rem;white-space:nowrap}
 .live-pill::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:#7CF0C8;box-shadow:0 0 0 3px rgba(124,240,200,.3)}
 .case-thumb{display:block;margin-top:1rem}
-.case-thumb img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:0 18px 36px -24px rgba(16,27,51,.45);transition:transform .25s ease}
+.case-thumb img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:0 18px 36px -24px rgb(var(--sh,16 27 51) / .45);transition:transform .25s ease}
 .case-thumb:hover img{transform:translateY(-3px)}
 @media (max-width:720px){.case-thumb{max-width:26rem}}
 .cs-followup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.5rem 2rem;align-items:center;border:2px solid var(--accent);border-radius:16px;padding:1.5rem;background:var(--card)}
@@ -296,13 +296,13 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 .pt-dots i::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--f,0));transform-origin:left}
 .pt-step .case-more{margin:0}
 .pt-static{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:.75rem}
-.pt-static img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 10px 24px -14px rgba(16,27,51,.45)}
+.pt-static img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 10px 24px -14px rgb(var(--sh,16 27 51) / .45)}
 
 /* the phone: assets/img/iphone-frame.svg (vector, iPhone 15/16 Pro proportions in pt: 435x888 incl. buttons,
    body 427x888 r72, screen 393x852 r55 at 21,18). The screen sits under the frame's transparent cutout. */
 .pt-phone{position:relative;height:var(--ph);aspect-ratio:435/888;flex:none}
 .pt-phone::before{content:"";position:absolute;z-index:0;left:.92%;right:.92%;top:0;bottom:0;border-radius:16.86%/8.11%;
-  box-shadow:0 2px 3px rgba(16,27,51,.18),0 26px 40px -18px rgba(16,27,51,.42),0 60px 90px -40px rgba(16,27,51,.5)}
+  box-shadow:0 2px 3px rgb(var(--sh,16 27 51) / .18),0 26px 40px -18px rgb(var(--sh,16 27 51) / .42),0 60px 90px -40px rgb(var(--sh,16 27 51) / .5)}
 .pt-screen{position:absolute;z-index:1;left:4.71%;top:1.97%;width:90.57%;height:96.06%;border-radius:14.06%/6.5%;overflow:hidden;background:#05070c}
 .pt-frame{position:absolute;z-index:2;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
 .pt-img,.pt-gimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
@@ -338,3 +338,39 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
   .pt-on .pt-card{top:var(--stage-h,52vh);padding:.4rem 0 1rem;opacity:.22}
   .pt-step h3{font-size:1.55rem;margin-bottom:.5rem}.pt-prob{font-size:1.02rem;line-height:1.5}.pt-fix{font-size:.92rem;line-height:1.5;margin-bottom:.75rem}
 }
+
+/* =====================================================================
+   WARM THEMES: <html data-warm="cream|terra|cocoa">, picked with ?theme= (default cream).
+   Every colour in the site comes from these variables; they override the old blue palette
+   and the OS dark-mode palette. --g1..--g5 feed the animated glow layer (assets/js/bg-fx.js).
+   ===================================================================== */
+html:root[data-warm]{--on-accent:#fff;--on-mark:#2B1A10}
+/* 1. Cream: ivory paper, peach / apricot / amber glows, deep brown ink */
+html:root[data-warm="cream"]{color-scheme:light;--paper:#FBF3E6;--ink:#2B1A10;--muted:#5E4838;--line:#E8D8C0;--accent:#A5390A;--mark:#FFC24A;--card:#FFFAF1;
+  --grid:rgba(120,70,20,.06);--o1:#FFB08A;--o2:#FFC47A;--o3:#FFA63D;--oa:.5;--sh:60 30 10;--pill1:#A5390A;--pill2:#7A2D08;
+  --g1:#FFB08A;--g2:#FFC47A;--g3:#FFA63D;--g4:#F7A98F;--g5:#FFD98A;--ga:.46}
+/* 2. Terracotta & sand: earthy, burnt-orange accent */
+html:root[data-warm="terra"]{color-scheme:light;--paper:#EBD9C1;--ink:#3A1F14;--muted:#5A3C2E;--line:#D9BFA0;--accent:#9A2D0B;--mark:#E8A33D;--card:#F7ECDD;
+  --grid:rgba(90,40,15,.06);--o1:#C8694A;--o2:#D9A877;--o3:#B5533A;--oa:.5;--sh:58 31 20;--pill1:#9A2D0B;--pill2:#6B1E08;
+  --g1:#C8694A;--g2:#D9A877;--g3:#B5533A;--g4:#D8A889;--g5:#C69A5A;--ga:.6}
+/* 3. Cocoa: espresso dark, glowing amber and rose-gold */
+html:root[data-warm="cocoa"]{color-scheme:dark;--paper:#1C120D;--ink:#F6E7D4;--muted:#CDB59B;--line:#3F2B20;--accent:#FFB366;--mark:#F2A65A;--card:#2A1A12;
+  --grid:rgba(255,200,140,.05);--o1:#FFA24D;--o2:#E3A08E;--o3:#C9703E;--oa:.3;--sh:0 0 0;--pill1:#E08A3A;--pill2:#9A4E14;--on-accent:#2B1A10;
+  --g1:#FFA24D;--g2:#E3A08E;--g3:#C9703E;--g4:#F4C27A;--g5:#B76E79;--ga:.5}
+/* highlighter marks sit behind the text: on the dark theme use a thin underline so light text stays readable */
+html:root[data-warm="cocoa"] .hero h1 span,html:root[data-warm="cocoa"] .cs-hero h1 span{background:linear-gradient(transparent 84%,var(--mark) 84% 94%,transparent 94%)}
+html:root[data-warm="cocoa"] .cs .hl{background:linear-gradient(transparent 86%,var(--mark) 86% 98%,transparent 98%)}
+html:root[data-warm="cocoa"] .cs-fig img,html:root[data-warm="cocoa"] .cs-screen img,html:root[data-warm="cocoa"] .case-thumb img{box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+html:root[data-warm] .cs-cover img{box-shadow:0 30px 60px -30px rgb(var(--sh) / .45)}
+html:root[data-warm] .pt-phone::before{box-shadow:0 2px 3px rgb(var(--sh) / .22),0 26px 40px -18px rgb(var(--sh) / .5),0 60px 90px -40px rgb(var(--sh) / .6)}
+/* the living glow layer replaces the CSS orbs once it is running (orbs stay as the no-JS fallback) */
+html.has-fx .orb{display:none}
+html:root[data-warm] .bg::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse min(46rem,92vw) 85% at 50% 45%,color-mix(in srgb,var(--paper) 66%,transparent) 45%,transparent 92%)}
+/* warm links/selection */
+html:root[data-warm] ::selection{background:var(--mark);color:var(--on-mark)}
+/* theme switcher (only shown while previewing with ?theme=) */
+.theme-sw{position:fixed;left:50%;bottom:max(.9rem,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;gap:.25rem;padding:.3rem;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px -12px rgb(var(--sh,16 27 51) / .45);font-family:var(--display);font-weight:700;font-size:.8rem}
+.theme-sw a{padding:.4rem .8rem;border-radius:999px;text-decoration:none;color:var(--ink)}
+.theme-sw a[aria-current="true"]{background:var(--ink);color:var(--paper)}
+.theme-sw a:hover:not([aria-current]){background:var(--line)}

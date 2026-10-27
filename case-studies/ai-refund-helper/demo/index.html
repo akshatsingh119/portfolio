@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var b=new URLSearchParams(location.search).get("bg");if(/^[a-ce]$/.test(b))document.documentElement.setAttribute("data-bg",b)})()</script>
+<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cream";d.setAttribute("data-warm",t);if(q)d.setAttribute("data-preview","")})()</script>
 <title>Refund Clock Helper: live AI demo for failed UPI payments | Akshat Singh</title>
 <meta name="description" content="Live AI demo by Akshat Singh: describe a failed UPI payment in English, Hindi or Hinglish and get the RBI refund deadline, next step and a dispute draft. Built with Gemini, checked by code guardrails, evaluated on 50 cases.">
 <link rel="canonical" href="https://akshatsingh119.github.io/portfolio/case-studies/ai-refund-helper/demo/">
@@ -97,5 +97,6 @@
 </div>
 <script src="replay.js"></script>
 <script src="demo.js"></script>
+<script src="../../../assets/js/theme.js" defer></script>
 </body>
 </html>
