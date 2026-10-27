@@ -350,13 +350,13 @@ html:root[data-warm="cream"]{color-scheme:light;--paper:#FBF3E6;--ink:#2B1A10;--
   --grid:rgba(120,70,20,.06);--o1:#FFB08A;--o2:#FFC47A;--o3:#FFA63D;--oa:.5;--sh:60 30 10;--pill1:#A5390A;--pill2:#7A2D08;
   --g1:#FFB08A;--g2:#FFC47A;--g3:#FFA63D;--g4:#F7A98F;--g5:#FFD98A;--ga:.46}
 /* 2. Terracotta & sand: earthy, burnt-orange accent */
-html:root[data-warm="terra"]{color-scheme:light;--paper:#EBD9C1;--ink:#3A1F14;--muted:#5A3C2E;--line:#D9BFA0;--accent:#9A2D0B;--mark:#E8A33D;--card:#F7ECDD;
+html:root[data-warm="terra"]{color-scheme:light;--paper:#EBD9C1;--ink:#3A1F14;--muted:#5A3C2E;--line:#D9BFA0;--accent:#852508;--mark:#E8A33D;--card:#F7ECDD;
   --grid:rgba(90,40,15,.06);--o1:#C8694A;--o2:#D9A877;--o3:#B5533A;--oa:.5;--sh:58 31 20;--pill1:#9A2D0B;--pill2:#6B1E08;
-  --g1:#C8694A;--g2:#D9A877;--g3:#B5533A;--g4:#D8A889;--g5:#C69A5A;--ga:.6}
+  --g1:#C8694A;--g2:#D9A877;--g3:#B5533A;--g4:#D8A889;--g5:#C69A5A;--ga:.5;--veil:35%}
 /* 3. Cocoa: espresso dark, glowing amber and rose-gold */
 html:root[data-warm="cocoa"]{color-scheme:dark;--paper:#1C120D;--ink:#F6E7D4;--muted:#CDB59B;--line:#3F2B20;--accent:#FFB366;--mark:#F2A65A;--card:#2A1A12;
-  --grid:rgba(255,200,140,.05);--o1:#FFA24D;--o2:#E3A08E;--o3:#C9703E;--oa:.3;--sh:0 0 0;--pill1:#E08A3A;--pill2:#9A4E14;--on-accent:#2B1A10;
-  --g1:#FFA24D;--g2:#E3A08E;--g3:#C9703E;--g4:#F4C27A;--g5:#B76E79;--ga:.5}
+  --grid:rgba(255,200,140,.05);--o1:#FFA24D;--o2:#E3A08E;--o3:#C9703E;--oa:.3;--sh:0 0 0;--pill1:#8F410E;--pill2:#5C2706;--on-accent:#2B1A10;
+  --g1:#FFA24D;--g2:#E3A08E;--g3:#C9703E;--g4:#F4C27A;--g5:#B76E79;--ga:.42;--veil:45%}
 /* highlighter marks sit behind the text: on the dark theme use a thin underline so light text stays readable */
 html:root[data-warm="cocoa"] .hero h1 span,html:root[data-warm="cocoa"] .cs-hero h1 span{background:linear-gradient(transparent 84%,var(--mark) 84% 94%,transparent 94%)}
 html:root[data-warm="cocoa"] .cs .hl{background:linear-gradient(transparent 86%,var(--mark) 86% 98%,transparent 98%)}
@@ -366,7 +366,7 @@ html:root[data-warm] .pt-phone::before{box-shadow:0 2px 3px rgb(var(--sh) / .22)
 /* the living glow layer replaces the CSS orbs once it is running (orbs stay as the no-JS fallback) */
 html.has-fx .orb{display:none}
 html:root[data-warm] .bg::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse min(46rem,92vw) 85% at 50% 45%,color-mix(in srgb,var(--paper) 66%,transparent) 45%,transparent 92%)}
+  background:radial-gradient(ellipse min(46rem,92vw) 85% at 50% 45%,color-mix(in srgb,var(--paper) 66%,transparent) 45%,transparent 92%),linear-gradient(color-mix(in srgb,var(--paper) var(--veil,0%),transparent),color-mix(in srgb,var(--paper) var(--veil,0%),transparent))}
 /* warm links/selection */
 html:root[data-warm] ::selection{background:var(--mark);color:var(--on-mark)}
 /* theme switcher (only shown while previewing with ?theme=) */
