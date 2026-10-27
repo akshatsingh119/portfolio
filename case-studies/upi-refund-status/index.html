@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-warm="cocoa">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cream";d.setAttribute("data-warm",t);if(q)d.setAttribute("data-preview","")})()</script>
+<meta name="theme-color" content="#1C120D">
+<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cocoa";d.setAttribute("data-warm",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",{cream:"#FBF3E6",terra:"#EBD9C1",cocoa:"#1C120D"}[t]);if(q)d.setAttribute("data-preview","")})()</script>
+<style>html{background:#1C120D;color-scheme:dark}html[data-warm=cream]{background:#FBF3E6;color-scheme:light}html[data-warm=terra]{background:#EBD9C1;color-scheme:light}</style>
 <title>Refund Clock: where's my money after a failed UPI payment? | Akshat Singh</title>
 <meta name="description" content="Short independent product case study: when a UPI payment is debited but fails, show where the money is, the refund date RBI's rules guarantee, and a one-tap dispute.">
 <meta property="og:title" content="Refund Clock: where's my money after a failed UPI payment? | Akshat Singh">
@@ -48,7 +50,7 @@
       </dl>
       <p class="cs-note"><strong>Independent concept, not Paytm work.</strong> Built only from public information: RBI and NPCI circulars, published data, news and public user posts. “Lumo Pay” and “Sharma Medicos” are fictional, and every amount, time and reference number in the screens is illustrative.</p>
       <figure class="cs-fig cs-cover">
-        <img src="../../assets/img/upi-refund-status/cover-cream-1600.webp" srcset="../../assets/img/upi-refund-status/cover-cream-800.webp 800w, ../../assets/img/upi-refund-status/cover-cream-1600.webp 1600w, ../../assets/img/upi-refund-status/cover-cream-2400.webp 2400w, ../../assets/img/upi-refund-status/cover-cream-3200.webp 3200w" sizes="(max-width: 62rem) calc(100vw - 3rem), 59rem" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Refund Clock concept: a pending payment showing where the money is, a refund status screen counting down to 'Back in your bank by Mon, 26 Oct', and a confirmation saying '₹1,240 is back'.">
+        <img src="../../assets/img/upi-refund-status/cover-cocoa-1600.webp" srcset="../../assets/img/upi-refund-status/cover-cocoa-800.webp 800w, ../../assets/img/upi-refund-status/cover-cocoa-1600.webp 1600w, ../../assets/img/upi-refund-status/cover-cocoa-2400.webp 2400w, ../../assets/img/upi-refund-status/cover-cocoa-3200.webp 3200w" sizes="(max-width: 62rem) calc(100vw - 3rem), 59rem" width="1600" height="1000" fetchpriority="high" alt="Three phone screens from the Refund Clock concept: a pending payment showing where the money is, a refund status screen counting down to 'Back in your bank by Mon, 26 Oct', and a confirmation saying '₹1,240 is back'.">
       </figure>
     </div>
 
@@ -131,7 +133,7 @@
       <h2 id="flow-h">Refund Clock in four screens</h2>
       <p>The flow follows one ₹1,240 pharmacy payment from the stuck screen to the refund. Each screen is 390×844, built on the same small design system as my <a href="../rewards-clarity/">Reward Receipt</a> case study.</p>
       <figure class="cs-fig cs-flow">
-        <img src="../../assets/img/upi-refund-status/flow-cream-960.webp" srcset="../../assets/img/upi-refund-status/flow-cream-960.webp 960w, ../../assets/img/upi-refund-status/flow-cream-1920.webp 1920w, ../../assets/img/upi-refund-status/flow-cream-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview of four phone screens with arrows: pending payment with a money tracker, refund countdown, one-tap dispute sheet, and refund credited.">
+        <img src="../../assets/img/upi-refund-status/flow-cocoa-960.webp" srcset="../../assets/img/upi-refund-status/flow-cocoa-960.webp 960w, ../../assets/img/upi-refund-status/flow-cocoa-1920.webp 1920w, ../../assets/img/upi-refund-status/flow-cocoa-2880.webp 2880w" sizes="(max-width: 62rem) 100vw, 59rem" width="1920" height="1240" loading="lazy" decoding="async" alt="Flow overview of four phone screens with arrows: pending payment with a money tracker, refund countdown, one-tap dispute sheet, and refund credited.">
       </figure>
       <div class="cs-screens cs-screens-4">
         <figure class="cs-screen">
@@ -218,7 +220,7 @@
           <p class="cs-src">Evaluated on 50 synthetic cases, 20 of them held out: 100% classification and correct rule, 0% hallucinated rules and 0% unsafe advice.</p>
           <div class="btns"><a class="btn fill" href="../ai-refund-helper/demo/">Try the live AI demo →</a></div>
         </div>
-        <a href="../ai-refund-helper/demo/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ai-refund-helper/cover-cream-1600.webp" srcset="../../assets/img/ai-refund-helper/cover-cream-800.webp 800w, ../../assets/img/ai-refund-helper/cover-cream-1600.webp 1600w, ../../assets/img/ai-refund-helper/cover-cream-2400.webp 2400w, ../../assets/img/ai-refund-helper/cover-cream-3200.webp 3200w" sizes="(max-width: 720px) calc(100vw - 3rem), 29rem" width="1600" height="1000" loading="lazy" decoding="async" alt=""></a>
+        <a href="../ai-refund-helper/demo/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ai-refund-helper/cover-cocoa-1600.webp" srcset="../../assets/img/ai-refund-helper/cover-cocoa-800.webp 800w, ../../assets/img/ai-refund-helper/cover-cocoa-1600.webp 1600w, ../../assets/img/ai-refund-helper/cover-cocoa-2400.webp 2400w, ../../assets/img/ai-refund-helper/cover-cocoa-3200.webp 3200w" sizes="(max-width: 720px) calc(100vw - 3rem), 29rem" width="1600" height="1000" loading="lazy" decoding="async" alt=""></a>
       </div>
     </section>
 

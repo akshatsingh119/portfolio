@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-warm="cocoa">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cream";d.setAttribute("data-warm",t);if(q)d.setAttribute("data-preview","")})()</script>
+<meta name="theme-color" content="#1C120D">
+<script>(function(){var d=document.documentElement,u=new URLSearchParams(location.search),b=u.get("bg"),q=u.get("theme"),T=["cream","terra","cocoa"],t;if(/^[a-ce]$/.test(b))d.setAttribute("data-bg",b);try{if(T.indexOf(q)>-1)sessionStorage.setItem("theme",q);t=sessionStorage.getItem("theme")}catch(e){}if(T.indexOf(q)>-1)t=q;if(T.indexOf(t)<0)t="cocoa";d.setAttribute("data-warm",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",{cream:"#FBF3E6",terra:"#EBD9C1",cocoa:"#1C120D"}[t]);if(q)d.setAttribute("data-preview","")})()</script>
+<style>html{background:#1C120D;color-scheme:dark}html[data-warm=cream]{background:#FBF3E6;color-scheme:light}html[data-warm=terra]{background:#EBD9C1;color-scheme:light}</style>
 <title>Akshat Singh | Product Manager</title>
 <meta name="description" content="Product manager and analyst at Paytm. I build features for the Mas Movil super app and use data to decide what to ship.">
 <meta property="og:title" content="Akshat Singh | Product Manager">
@@ -137,7 +139,7 @@
         <div>
           <h3>Refund Clock Helper</h3>
           <p class="tag"><span class="live-pill">Live AI demo</span> LLM feature · built on the Refund Clock case study</p>
-          <a class="case-thumb" href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/cover-cream-1600.webp" srcset="assets/img/ai-refund-helper/cover-cream-800.webp 800w, assets/img/ai-refund-helper/cover-cream-1600.webp 1600w, assets/img/ai-refund-helper/cover-cream-2400.webp 2400w, assets/img/ai-refund-helper/cover-cream-3200.webp 3200w" sizes="(max-width: 720px) calc(100vw - 3rem), 13rem" width="1600" height="1000" loading="lazy" decoding="async" alt="Refund Clock Helper: a live AI demo answering a failed UPI payment with the refund date, ₹640 back by Sat 31 Oct."></a>
+          <a class="case-thumb" href="case-studies/ai-refund-helper/demo/"><img src="assets/img/ai-refund-helper/cover-cocoa-1600.webp" srcset="assets/img/ai-refund-helper/cover-cocoa-800.webp 800w, assets/img/ai-refund-helper/cover-cocoa-1600.webp 1600w, assets/img/ai-refund-helper/cover-cocoa-2400.webp 2400w, assets/img/ai-refund-helper/cover-cocoa-3200.webp 3200w" sizes="(max-width: 720px) calc(100vw - 3rem), 13rem" width="1600" height="1000" loading="lazy" decoding="async" alt="Refund Clock Helper: a live AI demo answering a failed UPI payment with the refund date, ₹640 back by Sat 31 Oct."></a>
         </div>
         <div>
           <dl>

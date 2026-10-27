@@ -340,7 +340,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 }
 
 /* =====================================================================
-   WARM THEMES: <html data-warm="cream|terra|cocoa">, picked with ?theme= (default cream).
+   WARM THEMES: <html data-warm="cream|terra|cocoa">, picked with ?theme= (default cocoa).
    Every colour in the site comes from these variables; they override the old blue palette
    and the OS dark-mode palette. --g1..--g5 feed the animated glow layer (assets/js/bg-fx.js).
    ===================================================================== */
@@ -374,3 +374,11 @@ html:root[data-warm] ::selection{background:var(--mark);color:var(--on-mark)}
 .theme-sw a{padding:.4rem .8rem;border-radius:999px;text-decoration:none;color:var(--ink)}
 .theme-sw a[aria-current="true"]{background:var(--ink);color:var(--paper)}
 .theme-sw a:hover:not([aria-current]){background:var(--line)}
+
+/* Espresso: light phone screens would glare on the dark page, so give the phone a warm amber rim glow
+   and dim the two back phones a little (the screen images themselves are untouched). */
+html:root[data-warm="cocoa"] .pt-main::before{box-shadow:0 0 0 1px rgba(255,179,102,.22),0 0 38px -2px rgba(255,162,77,.30),0 0 110px 6px rgba(227,160,142,.20),0 40px 80px -30px rgba(0,0,0,.7)}
+html:root[data-warm="cocoa"] .pt-ghost{filter:brightness(.74) saturate(.88)}
+html:root[data-warm="cocoa"] .pt-ghost-l,html:root[data-warm="cocoa"] .pt-ghost-r{opacity:.5}
+html:root[data-warm="cocoa"] .pt-phone::before{box-shadow:0 0 0 1px rgba(255,179,102,.14),0 0 40px -6px rgba(255,162,77,.2),0 30px 60px -28px rgba(0,0,0,.65)}
+html:root[data-warm="cocoa"] .pt-main::before{box-shadow:0 0 0 1px rgba(255,179,102,.22),0 0 38px -2px rgba(255,162,77,.30),0 0 110px 6px rgba(227,160,142,.20),0 40px 80px -30px rgba(0,0,0,.7)}
