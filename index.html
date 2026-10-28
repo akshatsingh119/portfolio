@@ -24,7 +24,7 @@
 <div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
 <div class="wrap">
   <header class="top">
-    <span>Akshat Singh</span>
+    <span class="logo" id="logo">Akshat Singh</span>
     <nav aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -41,12 +41,26 @@
         <a class="btn" href="mailto:akshat.c119@gmail.com">Email me</a>
         <a class="btn" href="resume.pdf">Resume (PDF)</a>
       </div>
+      <aside class="sok" id="sok" aria-labelledby="sok-h" hidden></aside>
     </div>
 
     <section id="tour" class="pt" aria-labelledby="tour-h">
       <p class="pt-eyebrow">Case studies, screen by screen</p>
       <h2 id="tour-h">Scroll through the work</h2>
       <p class="gallery-sub">Four projects, 17 real screens. The phone follows along as you scroll; every screen is from the work below.</p>
+      <details class="brk" id="brk">
+        <summary class="brk-toggle"><span class="brk-off">Break the app <span aria-hidden="true">🔨</span></span><span class="brk-on">Fix the app <span aria-hidden="true">🔧</span></span></summary>
+        <div class="brk-lab">
+          <div class="brk-side">
+            <p class="brk-intro">Pick something to go wrong. The phone shows the real edge-case screen, and the note shows how I designed for it.</p>
+            <div class="brk-list" role="group" aria-label="Things that can go wrong"><button class="brk-btn" type="button" data-i="0" data-cur="coin" data-src="assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp" data-srcset="assets/img/rewards-clarity/s01-checkout-offer-not-eligible-390.webp 390w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp 780w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible-900.webp 900w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible-1170.webp 1170w" data-alt="Checkout screen with a Not eligible badge: no cashback on this payment because the offer is for people who haven’t paid in 60+ days, with a suggested alternative offer." aria-pressed="true"><small>Reward Receipt</small><span>Offer you’re not eligible for</span><em class="brk-why">Told before paying, with the reason. Every “not eligible” complaint I found was discovered after the user had already paid, so the check moves to checkout, says the 60-day rule plainly and suggests an offer they can use instead.</em></button><button class="brk-btn" type="button" data-i="1" data-cur="coin" data-src="assets/img/upi-refund-status/s01-result-pending.webp" data-srcset="assets/img/upi-refund-status/s01-result-pending-390.webp 390w, assets/img/upi-refund-status/s01-result-pending.webp 780w, assets/img/upi-refund-status/s01-result-pending-900.webp 900w, assets/img/upi-refund-status/s01-result-pending-1170.webp 1170w" data-alt="Pending UPI payment showing where the money is, with a Don’t pay again yet card." aria-pressed="false"><small>Refund Clock</small><span>Payment gets stuck mid-way</span><em class="brk-why">A money tracker instead of a spinner: debited from your bank, waiting in the UPI network, not with the shop yet. “Don’t pay again yet” comes first, because retrying while a payment is pending risks a double debit.</em></button><button class="brk-btn" type="button" data-i="2" data-cur="coin" data-src="assets/img/ai-refund-helper/ai-s02-scam-stop.webp" data-srcset="assets/img/ai-refund-helper/ai-s02-scam-stop-390.webp 390w, assets/img/ai-refund-helper/ai-s02-scam-stop.webp 780w, assets/img/ai-refund-helper/ai-s02-scam-stop-900.webp 900w, assets/img/ai-refund-helper/ai-s02-scam-stop-1170.webp 1170w" data-alt="AI helper reply flagging a scam: stop, don’t click, don’t pay, call 1930." aria-pressed="false"><small>Refund Clock Helper</small><span>Someone pastes a scam message</span><em class="brk-why">Safety runs before anything else. The helper tells them to stop, never asks for a PIN or OTP, and the verifier rejects any scam reply that leaves out 1930 and cybercrime.gov.in.</em></button><button class="brk-btn" type="button" data-i="3" data-cur="coin" data-src="assets/img/ai-refund-helper/ai-s03-late-refund.webp" data-srcset="assets/img/ai-refund-helper/ai-s03-late-refund-390.webp 390w, assets/img/ai-refund-helper/ai-s03-late-refund.webp 780w, assets/img/ai-refund-helper/ai-s03-late-refund-900.webp 900w, assets/img/ai-refund-helper/ai-s03-late-refund-1170.webp 1170w" data-alt="AI helper reply for a late refund: the deadline has passed and compensation of ₹100 per day applies." aria-pressed="false"><small>Refund Clock Helper</small><span>The refund is past its deadline</span><em class="brk-why">The model only extracts the facts. Code works out the due date and whether it has passed, and the verifier rejects a late-refund reply that doesn’t mention the ₹100 per day compensation.</em></button><button class="brk-btn" type="button" data-i="4" data-cur="bolt" data-src="assets/img/fueldrop/fd-s05-session-interrupted.webp" data-srcset="assets/img/fueldrop/fd-s05-session-interrupted-390.webp 390w, assets/img/fueldrop/fd-s05-session-interrupted.webp 780w, assets/img/fueldrop/fd-s05-session-interrupted-900.webp 900w, assets/img/fueldrop/fd-s05-session-interrupted-1170.webp 1170w" data-alt="Session stopped early: billed only for 10.2 kWh delivered, visit fee waived, ₹485.57 refunded." aria-pressed="false"><small>FuelDrop</small><span>The charger faults mid-session</span><em class="brk-why">Bill only the kWh the meter actually delivered, refund the rest of the estimate automatically, and if the fault is on FuelDrop’s side, waive the visit fee.</em></button><button class="brk-btn" type="button" data-i="5" data-cur="bolt" data-src="assets/img/fueldrop/fd-s06-payment-failed.webp" data-srcset="assets/img/fueldrop/fd-s06-payment-failed-390.webp 390w, assets/img/fueldrop/fd-s06-payment-failed.webp 780w, assets/img/fueldrop/fd-s06-payment-failed-900.webp 900w, assets/img/fueldrop/fd-s06-payment-failed-1170.webp 1170w" data-alt="Payment failed sheet: no money deducted, slot held for 5 minutes, Retry or Try UPI instead." aria-pressed="false"><small>FuelDrop</small><span>The payment fails</span><em class="brk-why">Hold the slot for 5 minutes, say plainly that no money was deducted (and that any debit comes back automatically), and offer Retry or another way to pay.</em></button></div>
+            <div class="brk-note" aria-live="polite"><p class="brk-note-k">Reward Receipt · Offer you’re not eligible for</p><p class="brk-note-t">Told before paying, with the reason. Every “not eligible” complaint I found was discovered after the user had already paid, so the check moves to checkout, says the 60-day rule plainly and suggests an offer they can use instead.</p></div>
+          </div>
+          <div class="brk-stage">
+            <div class="pt-phone brk-phone"><div class="pt-screen"><img class="brk-img" src="assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp" srcset="assets/img/rewards-clarity/s01-checkout-offer-not-eligible-390.webp 390w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible.webp 780w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible-900.webp 900w, assets/img/rewards-clarity/s01-checkout-offer-not-eligible-1170.webp 1170w" sizes="(max-width: 860px) 200px, 250px" width="780" height="1688" loading="lazy" decoding="async" alt="Checkout screen with a Not eligible badge: no cashback on this payment because the offer is for people who haven’t paid in 60+ days, with a suggested alternative offer."></div><img class="pt-frame" src="assets/img/iphone-frame.svg" width="435" height="888" alt="" decoding="async"></div>
+          </div>
+        </div>
+      </details>
       <div class="pt-grid">
         <div class="pt-stage" aria-hidden="true">
           <div class="pt-sticky">
@@ -245,8 +259,9 @@
     </section>
   </main>
 
-  <footer>© 2026 Akshat Singh</footer>
+  <footer>© 2026 Akshat Singh <span class="egg-hint" title="Try the Konami code, or tap my name five times">· psst: ↑↑↓↓←→←→BA</span></footer>
 </div>
 <script src="assets/js/theme.js" defer></script>
+<script src="assets/js/fun.js" defer></script>
 </body>
 </html>

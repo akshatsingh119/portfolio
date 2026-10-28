@@ -63,6 +63,7 @@
       if (c !== cur) {
         cur = c;
         capT.textContent = imgs[c].dataset.study; capN.textContent = `${c + 1} / ${N}`;
+        document.dispatchEvent(new CustomEvent('pt:screen', { detail: { i: c, n: N, study: imgs[c].dataset.study } }));
         const p = imgs[c - 1] || imgs[c + 1], q = imgs[c + 1] || imgs[c - 1];
         const put = (g, im) => { if (g.dataset.s !== im.dataset.src) { g.srcset = im.dataset.srcset; g.src = g.dataset.s = im.dataset.src; } };
         put(gl, p); put(gr, q);

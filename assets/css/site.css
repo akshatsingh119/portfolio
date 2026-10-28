@@ -385,3 +385,154 @@ html:root[data-warm="cocoa"] .pt-main::before{box-shadow:0 0 0 1px rgba(255,179,
 /* secondary pill (no live dot), e.g. "PRD" next to "Live MVP" */
 .live-pill.pill-quiet{background:none;color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
 .live-pill.pill-quiet::before{display:none}
+
+/* =====================================================================
+   FUN MODE: ship-or-kill hero game, easter egg, micro-interactions, Break the app.
+   Everything is progressive: without JS the hero, tour and work read exactly as before.
+   ===================================================================== */
+/* --- 1. Ship or kill (hero) --- */
+@media (min-width:900px){
+  .hero:has(.sok:not([hidden])){display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;grid-template-areas:"h h" "p g" "b g";column-gap:2.5rem;align-items:start}
+  .hero:has(.sok:not([hidden])) h1{grid-area:h}
+  .hero:has(.sok:not([hidden])) > p{grid-area:p}
+  .hero:has(.sok:not([hidden])) .btns{grid-area:b}
+  .hero .sok{grid-area:g;margin-top:-.4rem}
+}
+.sok{position:relative;margin-top:2rem;padding:1rem 1rem .9rem;border:1px solid var(--line);border-radius:20px;background:color-mix(in srgb,var(--card) 82%,transparent);
+  box-shadow:0 20px 50px -30px rgb(var(--sh,16 27 51) / .6);font-family:var(--display);touch-action:pan-y}
+.sok-k{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 .7rem;font-weight:700;font-size:.95rem;color:var(--ink)}
+.sok-k small{font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.8rem}
+.sok-deck{position:relative;height:8.6rem;margin-bottom:.75rem}
+.sok-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem 1rem;border-radius:14px;
+  background:var(--paper);border:1.5px solid var(--line);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y;
+  box-shadow:0 10px 24px -14px rgb(var(--sh,16 27 51) / .55);transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.sok-card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sok-card.is-drag{transition:none;cursor:grabbing}
+.sok-card.is-next{transform:translateY(7px) scale(.955);opacity:.6;pointer-events:none}
+.sok-card small{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.sok-card b{font-size:1.12rem;line-height:1.22;font-weight:700;color:var(--ink)}
+.sok-card .sok-hint{font-size:.72rem;color:var(--muted);font-weight:500}
+.sok-stamp{position:absolute;top:.7rem;padding:.1rem .5rem;border:2.5px solid;border-radius:8px;font-weight:800;font-size:.85rem;letter-spacing:.08em;opacity:0;transform:rotate(-10deg)}
+.sok-stamp.s{right:.8rem;color:#1E8E4E;border-color:#1E8E4E}
+.sok-stamp.k{left:.8rem;color:#C2361B;border-color:#C2361B;transform:rotate(10deg)}
+html:root[data-warm="cocoa"] .sok-stamp.s{color:#6EE7A0;border-color:#6EE7A0}
+html:root[data-warm="cocoa"] .sok-stamp.k{color:#FF9B85;border-color:#FF9B85}
+.sok-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.sok-btns button,.sok-end button{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem .8rem;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;
+  transition:background .15s,color .15s,transform .15s}
+.sok-btns button:hover,.sok-end button:hover{background:var(--ink);color:var(--paper)}
+.sok-btns button:active{transform:scale(.96)}
+.sok-btns button:focus-visible,.sok-end button:focus-visible,.brk-btn:focus-visible,.brk-toggle:focus-visible,.egg button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sok-why{min-height:2.9rem;margin:.7rem 0 0;font-family:var(--body);font-size:.92rem;line-height:1.45;color:var(--muted)}
+.sok-why b{font-family:var(--display);color:var(--ink)}
+.sok-why .ag{font-family:var(--display);font-weight:700;color:var(--accent)}
+.sok-end{text-align:left}
+.sok-end p{margin:0 0 .3rem;font-family:var(--body);color:var(--muted);font-size:.95rem;line-height:1.45}
+.sok-end .sok-score{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--ink);line-height:1.1;margin-bottom:.4rem}
+.sok-end .row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.sok-end .btn{padding:.6rem 1rem;font-size:.95rem}
+@media (max-width:899px){.sok{max-width:26rem}}
+
+/* --- 2. Easter egg --- */
+.logo{cursor:default;user-select:none}
+.egg-hint{opacity:.55;font-family:var(--display);letter-spacing:.04em}
+.egg{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:1rem;background:rgb(10 6 4 / .62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:egg-in .25s ease}
+.egg-card{position:relative;width:min(40rem,100%);max-height:min(88vh,48rem);overflow:auto;padding:1.6rem 1.6rem 1.3rem;border-radius:22px;background:var(--card);color:var(--ink);border:1px solid var(--line);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.7);animation:egg-pop .4s cubic-bezier(.2,1.4,.4,1)}
+.egg-card h2{font-size:clamp(1.5rem,4vw,2rem);margin:.2rem 0 .3rem}
+.egg-card .k{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0}
+.egg-card .sub{margin:0 0 1.1rem;color:var(--muted);font-size:1rem}
+.egg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem;margin:0 0 1.2rem;padding:0;list-style:none}
+.egg-stats li{padding:.75rem .8rem;border-radius:14px;background:var(--paper);border:1px solid var(--line);font-size:.86rem;line-height:1.35;color:var(--muted)}
+.egg-stats b{display:block;font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:.25rem}
+.egg-card h3{font-family:var(--display);font-size:1.05rem;margin:0 0 .5rem}
+.egg-takes{margin:0 0 1rem;padding-left:1.2rem;font-size:1rem;line-height:1.5}
+.egg-takes li{margin:.25rem 0}
+.egg-x{position:absolute;top:.8rem;right:.8rem;width:2.4rem;height:2.4rem;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font-size:1.2rem;line-height:1;cursor:pointer}
+.egg-foot{margin:0;font-size:.85rem;color:var(--muted)}
+@keyframes egg-in{from{opacity:0}}
+@keyframes egg-pop{from{opacity:0;transform:translateY(16px) scale(.96)}}
+.fx-confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:120}
+
+/* --- 3. Micro-interactions --- */
+/* custom cursor: ₹ coin over the payments projects, ⚡ over FuelDrop (fine pointer only, set up by JS) */
+.fcur{position:fixed;left:0;top:0;z-index:130;width:2.1rem;height:2.1rem;margin:-1.05rem 0 0 -1.05rem;border-radius:50%;pointer-events:none;display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;font-size:1.15rem;color:#5A3300;opacity:0;transform:translate3d(-100px,-100px,0) scale(.4);
+  transition:opacity .15s ease,scale .2s ease,width .2s,height .2s;
+  background:radial-gradient(circle at 32% 28%,#FFF1B8 0 12%,#FFD25A 30%,#E6A21E 70%,#B87410);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 -3px 0 rgba(120,60,0,.35),0 6px 16px -4px rgba(0,0,0,.45)}
+.fcur.on{opacity:1}
+.fcur.big{scale:1.3}
+.fcur svg{width:1.1rem;height:1.1rem;display:none}
+.fcur.bolt{background:radial-gradient(circle at 32% 28%,#E9FFF2 0 10%,#5BE39A 35%,#1E9E5A 75%,#0F6B3B);color:#FFF6C9}
+.fcur.bolt svg{display:block}.fcur.bolt .r{display:none}
+html.fc-on [data-cur],html.fc-on [data-cur] *{cursor:none!important}
+/* project cards tilt toward the pointer with a soft glare */
+html.tilt-on #work .case{position:relative;margin:0 -1.5rem;padding:2rem 1.5rem;border-radius:20px;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),background-color .3s ease;will-change:auto}
+html.tilt-on #work .case:first-of-type{padding-top:2rem}
+html.tilt-on #work .case:hover{background-color:color-mix(in srgb,var(--card) 55%,transparent)}
+html.tilt-on #work .case.is-tilt{transition:transform .12s linear,background-color .3s ease}
+html.tilt-on #work .case::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s ease;
+  background:radial-gradient(28rem circle at var(--gx,50%) var(--gy,50%),rgb(255 236 200 / .10),transparent 60%)}
+html.tilt-on #work .case:hover::after{opacity:1}
+html:root[data-warm="cream"].tilt-on #work .case::after,html:root[data-warm="terra"].tilt-on #work .case::after{background:radial-gradient(28rem circle at var(--gx,50%) var(--gy,50%),rgb(255 255 255 / .45),transparent 60%)}
+/* magnetic buttons */
+.mag{transition:transform .35s cubic-bezier(.2,1.6,.4,1),background .15s,color .15s,border-color .15s}
+.mag.is-mag{transition:transform .08s linear,background .15s,color .15s,border-color .15s}
+/* playful nav hover */
+header.top nav a{display:inline-block;position:relative;transition:transform .25s cubic-bezier(.3,1.8,.5,1),color .15s}
+header.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:-.25rem;height:.5rem;opacity:0;transform:scaleX(.2);transform-origin:left;transition:transform .3s cubic-bezier(.3,1.5,.5,1),opacity .2s;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 4 Q4 0 8 4 T16 4' fill='none' stroke='%23F2A65A' stroke-width='2'/%3E%3C/svg%3E") repeat-x 0 50%/16px 8px}
+header.top nav a:hover,header.top nav a:focus-visible{transform:translateY(-3px) rotate(-4deg)}
+header.top nav a:nth-child(2):hover{transform:translateY(-3px) rotate(3deg)}
+header.top nav a:hover::after,header.top nav a:focus-visible::after{opacity:1;transform:scaleX(1);animation:wig 1.2s linear infinite}
+@keyframes wig{to{background-position:16px 50%}}
+
+/* --- 4. Break the app --- */
+.brk{margin:-.5rem 0 2.5rem}
+.brk-toggle{display:inline-flex;align-items:center;gap:.4rem;list-style:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1rem;padding:.65rem 1.15rem;border-radius:999px;
+  border:2px dashed var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);transition:transform .2s cubic-bezier(.3,1.8,.5,1),background .2s}
+.brk-toggle::-webkit-details-marker{display:none}
+.brk-toggle:hover{background:color-mix(in srgb,var(--accent) 16%,transparent);transform:rotate(-2deg)}
+.brk .brk-on,.brk[open] .brk-off{display:none}
+.brk[open] .brk-on{display:inline}
+.brk[open] .brk-toggle{border-style:solid}
+.brk-lab{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;margin-top:1.25rem;padding:1.5rem;border-radius:22px;border:1px solid var(--line);
+  background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--accent) 5%,transparent) 0 12px,transparent 12px 24px),color-mix(in srgb,var(--card) 70%,transparent);--ph:min(520px,70vh)}
+.brk-intro{margin:0 0 1rem;color:var(--muted);font-size:1rem}
+.brk-list{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.brk-btn{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;text-align:left;font:inherit;font-family:var(--display);font-weight:700;font-size:.95rem;line-height:1.25;color:var(--ink);
+  padding:.65rem .8rem;border-radius:14px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;transition:border-color .15s,transform .2s cubic-bezier(.3,1.8,.5,1),background .15s}
+.brk-btn small{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.brk-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.brk-btn[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--paper))}
+.brk-btn .brk-why{display:none}
+html:not(.js) .brk-btn{cursor:default}
+html:not(.js) .brk-btn .brk-why{display:block;font-style:normal;font-family:var(--body);font-weight:400;font-size:.85rem;color:var(--muted);margin-top:.3rem}
+html:not(.js) .brk-note{display:none}
+.brk-note{margin-top:1rem;padding:.9rem 1rem;border-left:4px solid var(--mark);border-radius:8px;background:var(--card);min-height:7.5rem}
+.brk-note-k{margin:0 0 .25rem;font-family:var(--display);font-weight:700;font-size:.85rem;color:var(--accent)}
+.brk-note-t{margin:0;font-size:.98rem;line-height:1.5}
+.brk-stage{display:flex;justify-content:center}
+.brk-phone .pt-screen{background:#05070c}
+.brk-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:opacity .25s ease}
+.brk-img.is-out{opacity:0}
+.brk-phone.is-shake{animation:shake .45s cubic-bezier(.36,.07,.19,.97)}
+@keyframes shake{10%,90%{transform:translate3d(-1px,0,0) rotate(-.4deg)}20%,80%{transform:translate3d(3px,0,0) rotate(.6deg)}30%,50%,70%{transform:translate3d(-6px,0,0) rotate(-1deg)}40%,60%{transform:translate3d(6px,0,0) rotate(1deg)}}
+.brk-glitch{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;border-radius:inherit;
+  background:repeating-linear-gradient(0deg,rgba(255,80,60,.0) 0 3px,rgba(255,80,60,.22) 3px 4px);mix-blend-mode:screen}
+.brk-phone.is-shake .brk-glitch{animation:glitch .45s steps(4) }
+@keyframes glitch{0%,100%{opacity:0}25%{opacity:1;transform:translateX(4px)}50%{opacity:.5;transform:translateX(-3px)}75%{opacity:.9}}
+@media (max-width:860px){
+  .brk-lab{grid-template-columns:minmax(0,1fr);gap:1rem;padding:1rem;--ph:min(440px,58vh)}
+  .brk-stage{order:-1}
+  .brk-list{grid-template-columns:1fr 1fr}
+  .brk-btn{font-size:.85rem;padding:.55rem .65rem}
+  .brk-note{min-height:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .sok-card,.egg,.egg-card,.mag,header.top nav a,header.top nav a::after,.brk-toggle,.brk-btn,.brk-img{transition:none!important;animation:none!important}
+  header.top nav a:hover,header.top nav a:focus-visible{transform:none}
+  .brk-phone.is-shake,.brk-phone.is-shake .brk-glitch{animation:none}
+}
