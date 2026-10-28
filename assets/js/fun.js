@@ -212,7 +212,7 @@
     $$('.mag', root).forEach(b => {
       if (b.dataset.magOn) return; b.dataset.magOn = 1;
       b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
-        b.classList.add('is-mag'); b.style.transform = `translate(${(dx * .28).toFixed(1)}px,${(dy * .38).toFixed(1)}px)`; });
+        b.classList.add('is-mag'); const cl = v => Math.max(-9, Math.min(9, v)); b.style.transform = `translate(${cl(dx * .22).toFixed(1)}px,${cl(dy * .3).toFixed(1)}px)`; });
       b.addEventListener('pointerleave', () => { b.classList.remove('is-mag'); b.style.transform = ''; });
     });
   }

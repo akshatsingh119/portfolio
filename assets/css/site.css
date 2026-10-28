@@ -392,7 +392,7 @@ html:root[data-warm="cocoa"] .pt-main::before{box-shadow:0 0 0 1px rgba(255,179,
    ===================================================================== */
 /* --- 1. Ship or kill (hero) --- */
 @media (min-width:900px){
-  .hero:has(.sok:not([hidden])){display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;grid-template-areas:"h h" "p g" "b g";column-gap:2.5rem;align-items:start}
+  .hero:has(.sok:not([hidden])){display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;grid-template-areas:"h h" "p g" "b g";grid-template-rows:auto auto 1fr;column-gap:2.5rem;align-items:start}
   .hero:has(.sok:not([hidden])) h1{grid-area:h}
   .hero:has(.sok:not([hidden])) > p{grid-area:p}
   .hero:has(.sok:not([hidden])) .btns{grid-area:b}
@@ -428,7 +428,8 @@ html:root[data-warm="cocoa"] .sok-stamp.k{color:#FF9B85;border-color:#FF9B85}
 .sok-why .ag{font-family:var(--display);font-weight:700;color:var(--accent)}
 .sok-end{text-align:left}
 .sok-end p{margin:0 0 .3rem;font-family:var(--body);color:var(--muted);font-size:.95rem;line-height:1.45}
-.sok-end .sok-score{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--ink);line-height:1.1;margin-bottom:.4rem}
+.sok-end .sok-k{font-family:var(--display);font-size:.95rem;color:var(--ink);margin-bottom:.5rem}
+.sok-end .sok-score{font-family:var(--display);font-weight:800;font-size:1.35rem;color:var(--ink);line-height:1.1;margin-bottom:.4rem}
 .sok-end .row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem;align-items:center}
 .sok-end .btn{padding:.6rem 1rem;font-size:.95rem}
 @media (max-width:899px){.sok{max-width:26rem}}
@@ -442,8 +443,9 @@ html:root[data-warm="cocoa"] .sok-stamp.k{color:#FF9B85;border-color:#FF9B85}
 .egg-card h2{font-size:clamp(1.5rem,4vw,2rem);margin:.2rem 0 .3rem}
 .egg-card .k{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0}
 .egg-card .sub{margin:0 0 1.1rem;color:var(--muted);font-size:1rem}
-.egg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem;margin:0 0 1.2rem;padding:0;list-style:none}
+.egg-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(8.5rem,40vw),1fr));gap:.6rem;margin:0 0 1.2rem;padding:0;list-style:none}
 .egg-stats li{padding:.75rem .8rem;border-radius:14px;background:var(--paper);border:1px solid var(--line);font-size:.86rem;line-height:1.35;color:var(--muted)}
+@media (max-width:600px){.egg-card{padding:1.2rem 1rem 1rem}.egg-stats li{font-size:.8rem;padding:.6rem}}
 .egg-stats b{display:block;font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:.25rem}
 .egg-card h3{font-family:var(--display);font-size:1.05rem;margin:0 0 .5rem}
 .egg-takes{margin:0 0 1rem;padding-left:1.2rem;font-size:1rem;line-height:1.5}
