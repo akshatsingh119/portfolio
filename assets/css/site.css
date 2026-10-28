@@ -457,17 +457,15 @@ html:root[data-warm="cocoa"] .sok-stamp.k{color:#FF9B85;border-color:#FF9B85}
 .fx-confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:120}
 
 /* --- 3. Micro-interactions --- */
-/* custom cursor: ₹ coin over the payments projects, ⚡ over FuelDrop (fine pointer only, set up by JS) */
-.fcur{position:fixed;left:0;top:0;z-index:130;width:2.1rem;height:2.1rem;margin:-1.05rem 0 0 -1.05rem;border-radius:50%;pointer-events:none;display:grid;place-items:center;
-  font-family:var(--display);font-weight:800;font-size:1.15rem;color:#5A3300;opacity:0;transform:translate3d(-100px,-100px,0) scale(.4);
-  transition:opacity .15s ease,scale .2s ease,width .2s,height .2s;
-  background:radial-gradient(circle at 32% 28%,#FFF1B8 0 12%,#FFD25A 30%,#E6A21E 70%,#B87410);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 -3px 0 rgba(120,60,0,.35),0 6px 16px -4px rgba(0,0,0,.45)}
-.fcur.on{opacity:1}
-.fcur.big{scale:1.3}
-.fcur svg{width:1.1rem;height:1.1rem;display:none}
+/* cursor badge: a small ₹ / ⚡ that rides next to the real cursor over project cards and the tour phone.
+   The system cursor is never hidden or replaced; the badge is decorative, pointer-events:none, below overlays. */
+.fcur{position:fixed;left:0;top:0;z-index:40;width:1.35rem;height:1.35rem;border-radius:50%;pointer-events:none;display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;font-size:.78rem;line-height:1;color:#5A3300;visibility:hidden;will-change:transform;
+  background:radial-gradient(circle at 32% 28%,#FFF1B8 0 12%,#FFD25A 30%,#E6A21E 70%,#B87410);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35),0 3px 8px -2px rgba(0,0,0,.45)}
+.fcur.on{visibility:visible}
+.fcur svg{width:.8rem;height:.8rem;display:none}
 .fcur.bolt{background:radial-gradient(circle at 32% 28%,#E9FFF2 0 10%,#5BE39A 35%,#1E9E5A 75%,#0F6B3B);color:#FFF6C9}
 .fcur.bolt svg{display:block}.fcur.bolt .r{display:none}
-html.fc-on [data-cur],html.fc-on [data-cur] *{cursor:none!important}
 /* project cards tilt toward the pointer with a soft glare */
 html.tilt-on #work .case{position:relative;margin:0 -1.5rem;padding:2rem 1.5rem;border-radius:20px;transform-style:preserve-3d;
   transition:transform .5s cubic-bezier(.2,.8,.2,1),background-color .3s ease;will-change:auto}

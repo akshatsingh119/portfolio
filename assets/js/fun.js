@@ -56,7 +56,7 @@
   if (sok) {
     let i = 0, score = 0, busy = false;
     const N = IDEAS.length;
-    const card = (it, next) => `<div class="sok-card${next ? ' is-next' : ''}" ${next ? 'aria-hidden="true"' : 'tabindex="0"'} data-cur="${it.cur}"
+    const card = (it, next) => `<div class="sok-card${next ? ' is-next' : ''}" ${next ? 'aria-hidden="true"' : 'tabindex="0"'}
       aria-label="Idea: ${esc(it.t)}. Press the right arrow to ship or the left arrow to kill.">
       <span class="sok-stamp k" aria-hidden="true">KILL</span><span class="sok-stamp s" aria-hidden="true">SHIP</span>
       <small>${esc(it.p)}</small><b>${esc(it.t)}</b><span class="sok-hint" aria-hidden="true">← kill · drag · ship →</span></div>`;
@@ -163,7 +163,7 @@
       if (e.shiftKey && D.activeElement === a) { e.preventDefault(); z.focus(); }
       else if (!e.shiftKey && D.activeElement === z) { e.preventDefault(); a.focus(); }
     });
-    D.body.style.overflow = 'hidden';
+    D.body.style.overflow = 'hidden'; const fc = $('.fcur'); if (fc) fc.classList.remove('on');
     setTimeout(() => confetti(innerWidth / 2, innerHeight * .3, 170), 120);
   }
   function closeEgg() {
@@ -195,7 +195,7 @@
   /* ---------- 3. Micro-interactions ---------- */
   // zones for the custom cursor
   const setCur = (sel, k) => $$(sel).forEach(el => el.dataset.cur = k);
-  setCur('#pt-rr,#pt-rc,#pt-ai', 'coin'); setCur('#pt-fd', 'bolt');
+  
   $$('#work .case').forEach(el => { const h = ($('h3', el) || {}).textContent || '';
     if (/Reward Receipt|Refund Clock/.test(h)) el.dataset.cur = 'coin'; else if (/FuelDrop/.test(h)) el.dataset.cur = 'bolt'; });
   const stage = $('#tour .pt-stage'); if (stage) stage.dataset.cur = 'coin';
@@ -212,7 +212,7 @@
     $$('.mag', root).forEach(b => {
       if (b.dataset.magOn) return; b.dataset.magOn = 1;
       b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
-        b.classList.add('is-mag'); const cl = v => Math.max(-9, Math.min(9, v)); b.style.transform = `translate(${cl(dx * .22).toFixed(1)}px,${cl(dy * .3).toFixed(1)}px)`; });
+        b.classList.add('is-mag'); const cl = v => Math.max(-4, Math.min(4, v)); b.style.transform = `translate(${cl(dx * .1).toFixed(1)}px,${cl(dy * .15).toFixed(1)}px)`; });
       b.addEventListener('pointerleave', () => { b.classList.remove('is-mag'); b.style.transform = ''; });
     });
   }
@@ -220,21 +220,23 @@
     if (!FINE.matches || RM.matches || R.classList.contains('fc-on')) return;
     R.classList.add('fc-on', 'tilt-on');
     $$('.hero .btns .btn, .brk-toggle').forEach(b => b.classList.add('mag')); bindMag(D);
-    // cursor
+    // cursor badge: positioned synchronously in pointermove (no rAF, no easing), offset down-right of the hotspot
     const cur = D.createElement('div'); cur.className = 'fcur'; cur.setAttribute('aria-hidden', 'true');
     cur.innerHTML = '<span class="r">₹</span><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 2 4 13.5h6.2L9 22l10-12.5h-6.4z"/></svg>';
     D.body.appendChild(cur);
-    let mx = -100, my = -100, raf = 0, kind = '';
-    const paint = () => { raf = 0; cur.style.transform = `translate3d(${mx}px,${my}px,0)`; };
+    let mx = -1, my = -1, kind = '', inWin = false, sraf = 0;
+    const zoneAt = el => { if (eggEl || !el || !el.closest) return ''; const z = el.closest('[data-cur]'); return z ? z.dataset.cur : ''; };
+    const setKind = k => { if (k === kind) return; kind = k; cur.classList.toggle('on', !!k); cur.classList.toggle('bolt', k === 'bolt'); };
+    const place = () => { cur.style.transform = `translate3d(${mx + 14}px,${my + 18}px,0)`; };
     D.addEventListener('pointermove', e => {
-      if (e.pointerType !== 'mouse') return;
-      mx = e.clientX; my = e.clientY;
-      const z = e.target.closest && e.target.closest('[data-cur]'), k = z && !eggEl ? z.dataset.cur : '';
-      if (k !== kind) { kind = k; cur.classList.toggle('on', !!k); cur.classList.toggle('bolt', k === 'bolt'); }
-      cur.classList.toggle('big', !!(k && e.target.closest('a,button,summary,.sok-card')));
-      if (k && !raf) raf = requestAnimationFrame(paint);
+      if (e.pointerType !== 'mouse') { setKind(''); return; }
+      inWin = true; mx = e.clientX; my = e.clientY; place(); setKind(zoneAt(e.target));
     }, { passive: true });
-    D.addEventListener('pointerout', e => { if (!e.relatedTarget) { kind = ''; cur.classList.remove('on'); } });
+    // scrolling moves content under a still pointer: re-check what is under it (once per frame)
+    addEventListener('scroll', () => { if (!inWin || sraf) return; sraf = requestAnimationFrame(() => { sraf = 0; setKind(zoneAt(D.elementFromPoint(mx, my))); }); }, { passive: true });
+    const hide = () => { inWin = false; setKind(''); };
+    D.documentElement.addEventListener('pointerleave', hide); addEventListener('blur', hide);
+    D.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') setKind(''); }, { passive: true });
     // tilt + glare on project cards
     $$('#work .case').forEach(el => {
       let r = null, f = 0, px = 0, py = 0;
@@ -256,11 +258,10 @@
   if (brk) {
     const img = $('.brk-img', brk), phone = $('.brk-phone', brk), note = $('.brk-note', brk), bs = $('.brk-stage', brk);
     const gl = D.createElement('span'); gl.className = 'brk-glitch'; gl.setAttribute('aria-hidden', 'true'); $('.pt-screen', phone).appendChild(gl);
-    bs.dataset.cur = 'coin';
+    
     const btns = $$('.brk-btn', brk);
     function show(b, fx = true) {
       btns.forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
-      bs.dataset.cur = b.dataset.cur;
       $('.brk-note-k', note).textContent = `${$('small', b).textContent} · ${$('span', b).textContent}`;
       $('.brk-note-t', note).textContent = $('.brk-why', b).textContent;
       if (img.getAttribute('src') !== b.dataset.src) {
