@@ -382,3 +382,6 @@ html:root[data-warm="cocoa"] .pt-ghost{filter:brightness(.74) saturate(.88)}
 html:root[data-warm="cocoa"] .pt-ghost-l,html:root[data-warm="cocoa"] .pt-ghost-r{opacity:.5}
 html:root[data-warm="cocoa"] .pt-phone::before{box-shadow:0 0 0 1px rgba(255,179,102,.14),0 0 40px -6px rgba(255,162,77,.2),0 30px 60px -28px rgba(0,0,0,.65)}
 html:root[data-warm="cocoa"] .pt-main::before{box-shadow:0 0 0 1px rgba(255,179,102,.22),0 0 38px -2px rgba(255,162,77,.30),0 0 110px 6px rgba(227,160,142,.20),0 40px 80px -30px rgba(0,0,0,.7)}
+/* secondary pill (no live dot), e.g. "PRD" next to "Live MVP" */
+.live-pill.pill-quiet{background:none;color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.live-pill.pill-quiet::before{display:none}
